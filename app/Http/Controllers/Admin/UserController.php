@@ -1,0 +1,307 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\{User, Role, Company, OwnerCompany};
+use DataTables;
+use Auth;
+
+class UserController extends Controller
+{
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $allUsers = DataTables::of(User::with(['role', 'companies', 'ownerCompany']))
+                ->editColumn('dni', function ($user) {
+                    return $user->dni == '' ? '-' : $user->dni;
+                })
+                ->editColumn('phone', function ($user) {
+                    return $user->phone ?? '-';
+                })
+                ->addColumn('company', function ($user) {
+                    $companies = '';
+                    if ($user->ownerCompany != null) {
+                        $companies .= $user->ownerCompany->name;
+                    } elseif ($user->companies->isNotEmpty()) {
+                        $companyCount = $user->companies->count();
+                        $count = 1;
+                        foreach ($user->companies as $company) {
+                            if ($count == $companyCount) {
+                                $companies .= $company->name;
+                            } else {
+                                $companies .= $company->name . '<br>';
+                            }
+                            $count++;
+                        }
+                    }
+
+                    return $companies;
+                })
+                ->editColumn('status', function ($user) {
+                    $status = $user->status == 1 ? 'Activo' : 'Inactivo';
+                    $statusBtn = '<span class="' . getUserStatusClass($user) . '">' . $status . '</span>';
+                    return $statusBtn;
+                })
+                ->addColumn('action', function ($user) {
+                    $btn = '<button data-toggle="modal" data-id="' .
+                        $user->id . '" data-url="' . route('users.update', $user) . '"
+                            data-send="' . route('users.edit', $user) . '"
+                            data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
+                            editUser"><i class="fa-solid fa-pen-to-square"></i></button>';
+                    if (Auth::user()->id != $user->id) {
+                        $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' .
+                            $user->id . '" data-original-title="delete"
+                        data-url="' . route('users.delete', $user) . '" class="ms-3 edit btn btn-danger btn-sm
+                        deleteUser"><i class="fa-solid fa-trash-can"></i></a>';
+                    }
+                    return $btn;
+                })
+                ->rawColumns(['company', 'status', 'action'])
+                ->make(true);
+            return $allUsers;
+        }
+
+        $roles = Role::all();
+        return view('principal.viewAdmin.users.index', [
+            'roles' => $roles,
+        ]);
+    }
+
+
+    public function getApprovings(Request $request)
+    {
+        if ($request['type'] == 'approving') {
+            $status = 'invalid';
+            $role = Role::where('id', $request['id'])->first()->name;
+            $approvings = null;
+
+            if ($role == 'SOLICITANTE') {
+                $status = 'applicant';
+            } elseif ($role == 'APROBANTE') {
+                $status = 'approver';
+            }
+
+            $companies = in_array($role, ['SOLICITANTE', 'APROBANTE']) ? Company::all() : OwnerCompany::all();
+
+            $validManager = $role == 'GESTOR' ? true : false;
+
+            return response()->json([
+                'valid' => $status,
+                'approvings' => $approvings,
+                'companies' => $companies,
+                'validManager' => $validManager
+            ]);
+        } elseif ($request['type'] == 'company') {
+            $approvings = User::whereHas('role', function ($query) {
+                $query->where('name', 'APROBANTE');
+            })
+                ->whereHas('companies', function ($query2) use ($request) {
+                    $query2->where('id_company', $request['id']);
+                })
+                ->get();
+
+            return response()->json([
+                "approvings" => $approvings
+            ]);
+        }
+    }
+
+
+    public function store(Request $request)
+    {
+        $storeUrl = '';
+
+        if ($request->hasFile('userImageSignatureRegister')) {
+            $path = 'img/signatures/';
+            $file = $request->file('userImageSignatureRegister');
+            $uuid = $file->hashName();
+            $storeUrl = $path . $uuid;
+            Storage::putFileAs($path, $file, $uuid);
+        }
+
+        $status = $request['user-status-checkbox'] == 'on' ? 1 : 0;
+
+        if ($request['id_role'] == 1) {
+            $status = 1;
+        }
+
+        // $company = in_array($request['id_role'], [2, 3]) ? $request['id_user_company'] : null;
+        $ownerCompany = in_array($request['id_role'], [2, 3]) ? null : $request['id_user_company'];
+
+        $user = User::create(
+            [
+                "id_role" => $request['id_role'],
+                "id_owner_company" => $ownerCompany,
+                'user_name' => $request['username'],
+                'password' => Hash::make($request['password']),
+                'name' => $request['name'],
+                'dni' => $request['dni'],
+                'email' => $request['email'] ?? '',
+                'phone' => $request['phone'] ?? '',
+                'comment' => $request['userComment'],
+                'url_signature' => $storeUrl,
+                'status' => $status
+            ]
+        );
+
+        if (in_array($request['id_role'], [2, 3])) {
+            $user->companies()->sync($request['id_user_company']);
+        }
+
+        if ($request->has('id_approvings')) {
+            $user->approvings()->sync($request['id_approvings']);
+        }
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+
+    public function edit(User $user)
+    {
+        $user->load(['role', 'approvings', 'companies', 'ownerCompany']);
+
+        if ($user->url_signature == '' || $user->url_signature == null) {
+            $url_signature = '';
+        } else {
+            $url_signature = asset('storage/' . $user->url_signature);
+        }
+
+        $validApplicant = false;
+        $selectedApprovings = null;
+        $approvings = null;
+        $role = $user->role->name;
+
+        if ($role == 'SOLICITANTE') {
+            $validApplicant = 'applicant';
+            $selectedApprovings = $user->approvings->pluck('id')->toArray();
+            if ($user->companies->isNotEmpty()) {
+                $approvings = User::whereHas('role', function ($query) {
+                    $query->where('name', 'APROBANTE');
+                })
+                    ->whereHas('companies', function ($query2) use ($user) {
+                        $query2->where('id_company', $user->companies->first()->id ?? null);
+                    })
+                    ->get();
+            }
+        } else if ($role == 'APROBANTE') {
+            $validApplicant = 'approver';
+        }
+
+
+        $isAdmin = $role == 'ADMINISTRADOR' ? true : false;
+
+        $last_login = $user->last_login_at == null ? '- -' : getDiffForHumansFromTimestamp($user->last_login_at);
+
+        $companies = in_array($role, ['SOLICITANTE', 'APROBANTE']) ? Company::get(['id', 'name']) : OwnerCompany::get(['id', 'name']);
+        $selectedCompanies = [];
+
+        if ($user->ownerCompany != null) {
+            array_push($selectedCompanies, $user->ownerCompany);
+        }
+        else if ($user->companies->isNotEmpty()) {
+            $selectedCompanies = $user->companies;
+        }
+
+
+        return response()->json([
+            "username" => $user->user_name,
+            "name" => $user->name,
+            "dni" => $user->dni,
+            "email" => $user->email,
+            "phone" => $user->phone,
+            "comment" => $user->comment,
+            "url_signature" => $url_signature,
+            "status" => $user->status,
+            "last_login" => $last_login,
+            "profile" => $user->role->name,
+            "companies" => $companies,
+            "selectedCompanies" => $selectedCompanies,
+            "validApplicant" => $validApplicant,
+            'approvings' => $approvings,
+            "selectedApprovings" => $selectedApprovings,
+            'is_admin' => $isAdmin
+        ]);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $status = $request['user-status-checkbox'] == 'on' ? 1 : 0;
+        $role = $user->role->name;
+
+        $ownerCompany = in_array($role, ['SOLICITANTE', 'APROBANTE']) ? null : $request['id_user_company'];
+
+        if ($role == 'ADMINISTRADOR') {
+            $status = 1;
+        }
+
+        if ($request->hasFile('userImageSignatureEdit')) {
+            $path = 'img/signatures/';
+            $file_path = $user->url_signature;
+            if ($user->url_signature != null && Storage::exists($file_path)) {
+                Storage::delete($file_path);
+            }
+            $file = $request->file('userImageSignatureEdit');
+            $uuid = $file->hashName();
+            $store_url = $path . $uuid;
+
+            Storage::putFileAs($path, $file, $uuid);
+            $url_signature = $store_url;
+        } else {
+            $url_signature = $user->url_signature;
+        }
+
+        $password = $request['password'] == '' ? $user->password : Hash::make($request['password']);
+
+        $user->update([
+            'user_name' => $request['username'],
+            "id_owner_company" => $ownerCompany,
+            'password' => $password,
+            'name' => $request['name'],
+            'dni' => $request['dni'],
+            'email' => $request['email'] ?? '',
+            'phone' => $request['phone'] ?? '',
+            'comment' => $request['userComment'],
+            'url_signature' => $url_signature,
+            'status' => $status
+        ]);
+
+        if (in_array($role, ['SOLICITANTE', 'APROBANTE'])) {
+            $user->companies()->sync($request['id_user_company']);
+        }
+
+        if ($role == 'SOLICITANTE') {
+            $user->approvings()->sync($request['id_approvings']);
+        }
+
+        return response()->json([
+            'success' => 'user updated successfully'
+        ]);
+    }
+
+
+    public function destroy(User $user)
+    {
+        $signature_path = $user->url_signature;
+
+        if ($user->approvings->isNotEmpty()) {
+            $user->approvings()->detach();
+        }
+
+        if ($user->companies->isNotEmpty()) {
+            $user->companies()->detach();
+        }
+
+        $user->delete();
+        Storage::delete($signature_path);
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+}

@@ -1,0 +1,13 @@
+/vendor/
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+node_modules
+storage/app/public/img/signatures/*
+public/storage/img/signatures/*
+public/storage
+.vscode/
