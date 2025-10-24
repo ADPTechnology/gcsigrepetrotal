@@ -22,6 +22,7 @@ use App\Mail\{
     NotificationApproverMail
 };
 use Exception;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class IntermentGuideController extends Controller
@@ -303,6 +304,7 @@ class IntermentGuideController extends Controller
         //     ->get();
 
         $html = view('principal.viewAdmin.generatedWastes.partials.components.create', [
+            'actual_date' => getCurrentDate(),
             'guide_code' => $guide_code,
             'warehouses' => $warehouses,
             'wasteClasses' => $wasteClasses,
@@ -320,7 +322,6 @@ class IntermentGuideController extends Controller
         //     'approvings' => $approvings
         // ]);
     }
-
 
     public function getDataWarehouse(Request $request)
     {
@@ -359,73 +360,68 @@ class IntermentGuideController extends Controller
         }
     }
 
+    public function validateUniqueCode(Request $request)
+    {
+        return IntermentGuide::where('code', trim($request['code']))->first() == null ? "true" : "false";;
+    }
 
     public function store(Request $request)
     {
         $user = Auth::user();
 
         try {
-            $guide = IntermentGuide::create([
-                "comment" => $request['guide-comment'],
-                "stat_rejected" => 0,
-                "stat_approved" => 0,
-                "stat_recieved" => 0,
-                "stat_verified" => 0,
-                "id_warehouse" => $request['select-warehouse'],
-                "id_applicant" => $user->id,
-                "id_approvant" => null
-            ]);
+            DB::transaction(function () use ($request, $user) {
 
-            $id_str = strval($guide->id);
-
-            $guide_code = '';
-
-            for ($i = 1; $i <= (4 - strlen($id_str)); $i++) {
-                $guide_code .= '0';
-            }
-
-            $guide_code = 'GI-' . Carbon::now()->format('Y') . '-' . $guide_code . $id_str;
-
-            $guide->update([
-                'code' =>  $guide_code
-            ]);
-
-            // $ids_approvants = $request['id_approvant-guide'];
-
-            // $guide->previousApprovants()->attach($ids_approvants);
-
-            foreach ($request['wasteTypesId'] as $id) {
-                GuideWaste::create([
-                    "gestion_type" => $request['gestionType-' . $id],
-                    "aprox_weight" => $request['aproxWeightType-' . $id],
-                    // "package_quantity" => $request['packageQuantity-' . $id],
-                    "id_guide" => $guide->id,
-                    "id_wasteType" => $id,
-                    // "id_packageType" => $request['packageType-' . $id],
-                    "stat_stock" => 0,
-                    "stat_departure" => 0,
-                    "stat_arrival" => 0,
-                    "stat_transport_departure" => 0,
-                    "stat_disposition" => 0
+                $guide = IntermentGuide::create([
+                    "comment" => $request['guide-comment'],
+                    "stat_rejected" => 0,
+                    "stat_approved" => 0,
+                    "stat_recieved" => 0,
+                    "stat_verified" => 0,
+                    "id_warehouse" => $request['select-warehouse'],
+                    "id_applicant" => $user->id,
+                    "id_approvant" => null
                 ]);
-            }
+
+                if (trim($request['guide_code']) != '') {
+                    $guide_code = trim($request['guide_code']);
+                }
+                else {
+                    $id_str = strval($guide->id);
+                    $guide_code = '';
+                    for ($i = 1; $i <= (4 - strlen($id_str)); $i++) {
+                        $guide_code .= '0';
+                    }
+                    $guide_code = 'GI-' . Carbon::now()->format('Y') . '-' . $guide_code . $id_str;
+                }
+
+                $original_date = Carbon::parse($guide->created_at);
+                $date_part = Carbon::createFromFormat('d/m/Y', $request['guide_date']);
+                $final_timestamp = $date_part->setTimeFrom($original_date);
+
+                $guide->update([
+                    'code' =>  $guide_code,
+                    'created_at' => $final_timestamp
+                ]);
+
+                foreach ($request['wasteTypesId'] as $id) {
+                    GuideWaste::create([
+                        "gestion_type" => $request['gestionType-' . $id],
+                        "aprox_weight" => $request['aproxWeightType-' . $id],
+                        // "package_quantity" => $request['packageQuantity-' . $id],
+                        "id_guide" => $guide->id,
+                        "id_wasteType" => $id,
+                        // "id_packageType" => $request['packageType-' . $id],
+                        "stat_stock" => 0,
+                        "stat_departure" => 0,
+                        "stat_arrival" => 0,
+                        "stat_transport_departure" => 0,
+                        "stat_disposition" => 0
+                    ]);
+                }
+            });
 
             $success = true;
-
-            // if ($guide) {
-            //     $approvers_emails = $guide->previousApprovants->map(function ($approvant) {
-            //         return $approvant->email;
-            //     })->toArray();
-
-            //     try {
-            //         Mail::to($approvers_emails)
-            //             ->send(new NotificationApproverMail($guide));
-            //     } catch (Exception $e) {
-            //     }
-
-            //     // return new NotificationApproverMail($user, $guide);
-            // }
-
         } catch (Exception $e) {
             $success = false;
         }
@@ -434,8 +430,6 @@ class IntermentGuideController extends Controller
             'success' => $success,
             'message' => getMessageFromSuccess($success, 'stored')
         ]);
-
-        // return redirect()->route('guidesPending.index');
     }
 
     public function pendingGuides()

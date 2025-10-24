@@ -14,7 +14,8 @@
                 </button>
             </div>
 
-            <form action="{{ route('guides.store') }}" method="POST" id="registerGuideForm">
+            <form action="{{ route('guides.store') }}" method="POST" id="registerGuideForm"
+            data-validate="{{ route('validate.GuideCode') }}">
                 @csrf
                 <div class="modal-body" id="content-register-intguide">
                 </div>

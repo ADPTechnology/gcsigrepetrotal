@@ -1380,6 +1380,7 @@ ul.select2-selection__rendered {
     color: rgb(59, 59, 59);
     font-size: 1.1em;
     border: 1px solid rgb(161, 161, 161);
+    outline-color: var(--first-color);
 }
 
 .inner-box-select-warehouse {

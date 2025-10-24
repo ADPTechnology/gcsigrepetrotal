@@ -97,6 +97,7 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
             // Route::get('/solicitante/guías-de-internamiento/rechazados/ver/{guide}', 'rejectedShow')->name('guidesRejected.show');
             Route::get('/solicitante/crear-guía-de-internamiento/getDataWarehouse', 'getDataWarehouse')->name('guides.getDataWarehouse');
             Route::post('/solicitante/crear-guía-de-internamiento/registrar', 'store')->name('guides.store');
+            Route::post('/validate-unique-guide-code', 'validateUniqueCode')->name('validate.GuideCode');
         });
 
         // Route::get('/solicitante/residuos-generados', [ApplicantGeneratedWastesController::class, 'index'])->name('generatedWastesApplicant.index');

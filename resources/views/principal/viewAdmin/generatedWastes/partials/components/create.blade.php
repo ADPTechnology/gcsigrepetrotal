@@ -1,10 +1,27 @@
 <div class="container-create-guide card-body card z-index-2">
 
-    <div class="code-container mb-4">
-        GUÍA DE INTERNAMIENTO Nro:
-        <span class="code-txt">
-            {{ $guide_code }}
-        </span>
+    <div class="code-container mb-4 d-flex align-items-start justify-content-between">
+
+        <div class="d-flex align-items-start w-100">
+            <span class="text-bold mt-2">
+                GUÍA DE INTERNAMIENTO Nro:
+            </span>
+            <div class="d-inline-block">
+                <input class="code-txt text-center" name="guide_code" type="text"  value="{{ $guide_code }}">
+            </div>
+        </div>
+
+        <div>
+            <div class="datepicker-range-container input-daterange input-group w-auto justify-content-end" id="datepicker_store_guide">
+                <span class="datepicker-label">
+                    Fecha:
+                </span>
+
+                <input type="text" class="input-sm form-control" name="guide_date" id="guide_date_picker" />
+            </div>
+        </div>
+
+        <input type="hidden" name="actual_date" value="{{ $actual_date }}">
     </div>
 
     <div class="mb-4">

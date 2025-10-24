@@ -2877,7 +2877,6 @@ $(() => {
         //     $('#editWasteTypesSelect').html('');
         // })
 
-
         const editWasteClassForm = $('#EditWasteClassForm').validate({
             rules: {
                 symbol: {
@@ -4376,8 +4375,6 @@ $(() => {
                     let prevValue = inputEndDate.val()
                     let date = e.format(null, 'yyyy-mm-dd')
 
-                    console.log(prevValue)
-
                     if (prevValue === '' || (prevValue !== '' && prevValue !== date)) {
                         generatedWastesAdminTable.ajax.reload()
                     }
@@ -4472,86 +4469,111 @@ $(() => {
 
         // ------------ STORE ----------------
 
-        $('#button-save-guide').on('click', function (e) {
-            e.preventDefault();
-
-            var modal = $('#createIntermentGuideModal')
-            var form = modal.find('#registerGuideForm');
-            var selectInputsLen = $('.selects-inputs-wasteType').length;
-            var button = $(this);
-            var spinner = button.find('.loadSpinner');
-
-            var passValidation = validateInput();
-
-            if (selectInputsLen == 0) {
-                passValidation = false;
-            }
-
-            if (passValidation) {
-                Swal.fire({
-                    title: 'Confirmar solicitud',
-                    icon: 'info',
-                    showCancelButton: true,
-                    confirmButtonText: 'Confirmar',
-                    cancelButtonText: 'Cancelar',
-                    reverseButtons: true,
-                }).then(function (e) {
-                    if (e.value === true) {
-
-                        spinner.toggleClass('active')
-
-                        $.ajax({
-                            url: form.attr('action'),
-                            method: form.attr('method'),
-                            data: form.serialize(),
-                            dataType: 'JSON',
-                            success: function (data) {
-                                if (data.success) {
-                                    Toast.fire({
-                                        icon: 'success',
-                                        text: data.message
-                                    })
-
-                                    generatedWastesAdminTable.ajax.reload()
-                                    modal.modal('hide')
-                                } else {
-                                    Toast.fire({
-                                        icon: 'error',
-                                        text: data.message
-                                    })
-                                }
-                            },
-                            complete: function () {
-                                spinner.toggleClass('active')
-                            },
-                            error: function (error) {
-                                console.log(error)
+        const createGuideForm = $("#registerGuideForm").validate({
+            rules: {
+                guide_code: {
+                    required: true,
+                    maxlength: 255,
+                    remote: {
+                        url: $('#registerGuideForm').data('validate'),
+                        method: $('#registerGuideForm').attr('method'),
+                        dataType: 'JSON',
+                        data: {
+                            code: function () {
+                                return $('#registerGuideForm').find('input[name=guide_code]').val();
                             }
-                        })
+                        }
+                    }
+                },
+                guide_date: {
+                    required: true,
+                }
+            },
+            messages: {
+                guide_code: {
+                    remote: 'Este código ya está registrado.'
+                }
+            },
+            submitHandler: function (form, event) {
+                event.preventDefault();
+                var modal = $('#createIntermentGuideModal')
+                var form = $(form)
+                var selectInputsLen = $('.selects-inputs-wasteType').length;
+                var button = $(this);
+                var spinner = button.find('.loadSpinner');
 
-                        // form.submit();
-                    } else {
-                        e.dismiss;
-                    }
-                }, function (dismiss) {
-                    return false;
-                })
-            }
-            else {
-                Swal.fire({
-                    toast: true,
-                    icon: 'warning',
-                    title: 'Advertencia:',
-                    text: '¡Rellena el formulario para continuar!',
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                });
+                var passValidation = validateInput();
+
+                if (selectInputsLen == 0) {
+                    passValidation = false;
+                }
+
+                if (passValidation) {
+                    Swal.fire({
+                        title: 'Confirmar solicitud',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonText: 'Confirmar',
+                        cancelButtonText: 'Cancelar',
+                        reverseButtons: true,
+                    }).then(function (e) {
+                        if (e.value === true) {
+
+                            spinner.toggleClass('active')
+
+                            $.ajax({
+                                url: form.attr('action'),
+                                method: form.attr('method'),
+                                data: form.serialize(),
+                                dataType: 'JSON',
+                                success: function (data) {
+                                    if (data.success) {
+                                        Toast.fire({
+                                            icon: 'success',
+                                            text: data.message
+                                        })
+
+                                        generatedWastesAdminTable.ajax.reload()
+                                        modal.modal('hide')
+                                    } else {
+                                        Toast.fire({
+                                            icon: 'error',
+                                            text: data.message
+                                        })
+                                    }
+                                },
+                                complete: function () {
+                                    spinner.toggleClass('active')
+                                },
+                                error: function (error) {
+                                    console.log(error)
+                                }
+                            })
+
+                            // form.submit();
+                        } else {
+                            e.dismiss;
+                        }
+                    }, function (dismiss) {
+                        return false;
+                    })
+                }
+                else {
+                    Swal.fire({
+                        toast: true,
+                        icon: 'warning',
+                        title: 'Advertencia:',
+                        text: '¡Rellena el formulario para continuar!',
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    });
+                }
             }
         })
 
@@ -4914,6 +4936,19 @@ $(() => {
                 success: function (data) {
                     let html = data.html
                     container.html(html)
+
+                    var containerDateRangeGuide = container.find('#datepicker_store_guide')
+                    containerDateRangeGuide.datepicker({
+                        language: 'es',
+                        orientation: "bottom auto"
+                    })
+
+                    let actual_date = container.find('input[name=actual_date]').val()
+
+                    containerDateRangeGuide.find('input[name=guide_date]').each(function () {
+                        let datepicker = $(this)
+                        datepicker.datepicker('setDate', new Date(actual_date + 'T00:00:00'))
+                    })
 
                     let guideWarehouseSelect = $('#guide-warehouse-select');
                     guideWarehouseSelect.select2({
