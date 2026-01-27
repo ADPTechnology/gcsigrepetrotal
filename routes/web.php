@@ -66,7 +66,7 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 
-Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
+Route::group(['middleware' => ['auth', 'check.valid.user']], function () {
 
     Route::get('/inicio', [AdminController::class, 'index'])->name('home.index');
 
@@ -83,9 +83,9 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
     });
 
 
-    Route::group(['middleware' => 'check.role:ADMINISTRADOR,SOLICITANTE'], function(){
+    Route::group(['middleware' => 'check.role:ADMINISTRADOR,SOLICITANTE'], function () {
 
-        Route::controller(IntermentGuideController::class)->group(function(){
+        Route::controller(IntermentGuideController::class)->group(function () {
             // Route::get('/solicitante/guías-de-internamiento', 'index')->name('guides.index');
             Route::get('/solicitante/guías-de-internamiento/crear', 'create')->name('guides.create');
 
@@ -157,13 +157,14 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
 
     // });
 
-    Route::group(['middleware' => 'check.role:ADMINISTRADOR'], function(){
+    Route::group(['middleware' => 'check.role:ADMINISTRADOR'], function () {
 
-        Route::controller(PackingGuideController::class)->group(function() {
+        Route::controller(PackingGuideController::class)->group(function () {
 
             Route::get('/administrador/obtener-peso-total-de-residuos', 'getWastesTotalWeight')->name('getWastesTotalWeight.manager');
 
             Route::get('/administrador/gestion-interna', 'index')->name('stock.index');
+            Route::get('/administrador/gestion-externa', 'indexExternal')->name('stock.external');
 
             Route::get('/gestor/obtener-guias-seleccionadas', 'loadGuidesSelected')->name('loadGuidesSelected.manager');
             Route::get('/gestor/obtener-datos-particion/{waste}', 'getPartitionData')->name('getPartitionData.manager');
@@ -186,7 +187,7 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
             Route::get('/gestor/exportar-excel-residuos-cargas', 'exportWastesDeparturesExcel')->name('exportWastesDepartures.manager');
         });
 
-        Route::controller(DepartureController::class)->group(function(){
+        Route::controller(DepartureController::class)->group(function () {
 
             Route::get('/gestor/transporte', 'index')->name('departures.index');
             Route::get('/gestor/transporte/obtener-residuos-seleccionados', 'getWastesDeparturesDetail')->name('getWastesDepartureDetail.ajax');
@@ -194,10 +195,9 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
 
             Route::post('/gestor/transporte/actualizar-residuo-llegada', 'updateWastesArrival')->name('managerWastesArrival.update');
             Route::post('/gestor/transporte/actualizar-residuo-salida', 'updateWastesDeparture')->name('managerWastesDeparture.update');
-
         });
 
-        Route::controller(DispositionController::class)->group(function(){
+        Route::controller(DispositionController::class)->group(function () {
 
             Route::get('/gestor/disposición', 'index')->name('dispositions.index');
             Route::get('/gestor/disposición/obtener-residuos-seleccionados', 'getDispositions')->name('getWastesDetail.ajax');
@@ -209,7 +209,7 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
 
     // RUTAS DE LA INTERFAZ ADMINISTRADOR ------------------
 
-    Route::group(['middleware' => 'check.role:ADMINISTRADOR'], function() {
+    Route::group(['middleware' => 'check.role:ADMINISTRADOR'], function () {
 
         // Route::controller(AdminIntermentGuideController::class)->group(function(){
 
@@ -255,7 +255,7 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
             });
         });
 
-        Route::controller(UserController::class)->group(function(){
+        Route::controller(UserController::class)->group(function () {
             Route::get('/administrador/usuarios', 'index')->name('users.index');
             Route::post('/administrador/usuario/registrar', 'store')->name('users.store');
             Route::get('/administrador/usuario/editar/{user}', 'edit')->name('users.edit');
@@ -264,7 +264,7 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
             Route::delete('/administrador/usuario/eliminar/{user}', 'destroy')->name('users.delete');
         });
 
-        Route::controller(WarehouseController::class)->group(function(){
+        Route::controller(WarehouseController::class)->group(function () {
 
             Route::get('/administrador/puntos-verdes', 'index')->name('warehouses.index');
             /* ------- WAREHOUSE ------*/
@@ -299,14 +299,14 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
             Route::get('/administrador/company/editar/{company}', 'companyEdit')->name('companies.edit');
             Route::post('/administrador/company/actualizar/{company}', 'companyUpdate')->name('companies.update');
             Route::delete('/administrador/company/eliminar/{company}', 'companyDestroy')->name('companies.delete');
-             /*---------- FRONT ------------*/
+            /*---------- FRONT ------------*/
             Route::post('/administrador/front/registrar', 'frontStore')->name('fronts.store');
             Route::get('/administrador/front/editar/{front}', 'frontEdit')->name('fronts.edit');
             Route::post('/administrador/front/actualizar/{front}', 'frontUpdate')->name('fronts.update');
             Route::delete('/administrador/front/eliminar/{front}', 'frontDestroy')->name('fronts.delete');
         });
 
-        Route::controller(WasteController::class)->group(function(){
+        Route::controller(WasteController::class)->group(function () {
             Route::get('/administrador/residuos', 'index')->name('wastes.index');
             Route::get('/administrador/residuos/crear-nuevo', 'create')->name('wastes.create');
 
@@ -330,7 +330,7 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
             Route::delete('/administrador/grupos/eliminar/{group}', 'delete')->name('groups.delete');
         });
 
-        Route::controller(PackageController::class)->group(function(){
+        Route::controller(PackageController::class)->group(function () {
             Route::get('/administrador/residuos/tipo-embalaje', 'index')->name('packages.index');
             Route::post('/administrador/residuos/tipo-embalaje/registrar', 'store')->name('packageType.store');
             Route::post('/administrador/residuos/tipo-embalaje/actualizar/{type}', 'typeUpdate')->name('packageType.update');
@@ -374,10 +374,9 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function(){
 
             Route::get('/internamiento', 'index')->name('interIndex');
             Route::get('/gestion-interna', 'interManagementIndex')->name('interManagementIndex');
+            Route::get('/gestion-externa', 'extManagementIndex')->name('extManagementIndex');
 
             Route::get('/obtener-meses', 'getMonthsByYear')->name('getMonths');
         });
     });
-
 });
-

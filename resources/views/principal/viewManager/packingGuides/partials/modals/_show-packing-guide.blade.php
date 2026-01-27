@@ -25,7 +25,6 @@
                             <tr>
                                 <th>Registro de salida de los residuos</th>
                                 <th>Peso total (Kg)</th>
-                                <th>Total bultos</th>
                                 <th>Volumen (m3)</th>
                                 <th>Fecha de salida de los residuos</th>
                                 <th>Estado salida</th>
@@ -51,16 +50,11 @@
                                 <th>Nro. Guía de Internamiento</th>
                                 <th>Clase</th>
                                 <th>Nom. Residuo</th>
-                                <th>Tipo de embalaje</th>
-                                <th>Peso Real (Kg)</th>
-                                <th>Nro. Bultos</th>
+                                <th>Peso (Kg)</th>
                                 <th>Empresa</th>
-                                <th>Fecha de verificación</th>
                                 <th>Manejo/Gestión</th>
                                 <th>Estado Salida</th>
                                 <th>Estado Llegada</th>
-                                <th>Estado Salida de Pucallpa</th>
-                                <th>Estado Disposición</th>
                             </tr>
                         </thead>
 

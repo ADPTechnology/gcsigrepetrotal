@@ -22,8 +22,9 @@ class PackingGuideController extends Controller
 
     public function index(Request $request)
     {
-        if($request->ajax())
-        {
+        $gestion_type = 'INTERNA';
+        if ($request->ajax()) {
+            $request->merge(['gestion_type' => $gestion_type]);
             return $this->stockWastesService->getDatatable($request);
         }
         $request->session()->forget('stock_selected_ids');
@@ -38,16 +39,18 @@ class PackingGuideController extends Controller
         $waste_classes = WasteClass::get(['id', 'symbol']);
 
         $guideQuery = GuideWaste::join('internment_guides', 'guide_wastes.id_guide', '=', 'internment_guides.id')
-                    ->has('guide')
-                    ->where('gestion_type', 'INTERNA');
-                                // ->where('internment_guides.stat_approved', 1)
-                                // ->where('internment_guides.stat_recieved', 1)
-                                // ->where('internment_guides.stat_verified', 1);
+            ->has('guide')
+            ->where('gestion_type', $gestion_type);
+        // ->where('internment_guides.stat_approved', 1)
+        // ->where('internment_guides.stat_recieved', 1)
+        // ->where('internment_guides.stat_verified', 1);
 
         $max_date_stock = $guideQuery->selectRaw('MAX(internment_guides.created_at) AS max_date')->first()->max_date;
         $min_date_stock = $guideQuery->selectRaw('MIN(internment_guides.created_at) AS min_date')->first()->min_date;
 
-        $departureQuery = PackingGuide::query();
+        $departureQuery = PackingGuide::whereHas('wastes', function ($q) use ($gestion_type) {
+            $q->where('gestion_type', $gestion_type);
+        });
 
         $max_date_depart = $departureQuery->selectRaw('MAX(date_guides_departure) AS max_date')->first()->max_date;
         $min_date_depart = $departureQuery->selectRaw('MIN(date_guides_departure) AS min_date')->first()->min_date;
@@ -64,7 +67,57 @@ class PackingGuideController extends Controller
             'max_date_stock',
             'min_date_stock',
             'max_date_depart',
-            'min_date_depart'
+            'min_date_depart',
+            'gestion_type'
+        ));
+    }
+
+    public function indexExternal(Request $request)
+    {
+        $gestion_type = 'EXTERNA';
+        if ($request->ajax()) {
+            $request->merge(['gestion_type' => $gestion_type]);
+            return $this->stockWastesService->getDatatable($request);
+        }
+        $request->session()->forget('stock_selected_ids');
+        $session_stock_ids = $request->session()->get('stock_selected_ids', []);
+
+        $request->session()->forget('pckguides_selected_ids');
+        $session_pckguides_ids = $request->session()->get('pckguides_selected_ids', []);
+
+
+        $companies = Company::get(['id', 'name']);
+        // $package_types = PackageType::get(['id', 'name']);
+        $waste_classes = WasteClass::get(['id', 'symbol']);
+
+        $guideQuery = GuideWaste::join('internment_guides', 'guide_wastes.id_guide', '=', 'internment_guides.id')
+            ->has('guide')
+            ->where('gestion_type', $gestion_type);
+
+        $max_date_stock = $guideQuery->selectRaw('MAX(internment_guides.created_at) AS max_date')->first()->max_date;
+        $min_date_stock = $guideQuery->selectRaw('MIN(internment_guides.created_at) AS min_date')->first()->min_date;
+
+        $departureQuery = PackingGuide::whereHas('wastes', function ($q) use ($gestion_type) {
+            $q->where('gestion_type', $gestion_type);
+        });
+
+        $max_date_depart = $departureQuery->selectRaw('MAX(date_guides_departure) AS max_date')->first()->max_date;
+        $min_date_depart = $departureQuery->selectRaw('MIN(date_guides_departure) AS min_date')->first()->min_date;
+
+        $managements_types = InterManagement::all();
+
+        return view('principal.viewManager.packingGuides.index', compact(
+            'session_stock_ids',
+            'session_pckguides_ids',
+            'companies',
+            'managements_types',
+            // 'package_types',
+            'waste_classes',
+            'max_date_stock',
+            'min_date_stock',
+            'max_date_depart',
+            'min_date_depart',
+            'gestion_type'
         ));
     }
 
@@ -118,9 +171,9 @@ class PackingGuideController extends Controller
 
     public function loadWasteTypes(Request $request)
     {
-        $wastes_types = WasteType::whereHas('classesWastes', function ($q) use($request) {
-                            $q->where('classes_has_wastes.id_class', $request['value']);
-                        })->get(['id', 'name']);
+        $wastes_types = WasteType::whereHas('classesWastes', function ($q) use ($request) {
+            $q->where('classes_has_wastes.id_class', $request['value']);
+        })->get(['id', 'name']);
 
         return response()->json([
             'wastes_types' => $wastes_types
@@ -139,22 +192,22 @@ class PackingGuideController extends Controller
 
     public function loadGuidesSelected(Request $request)
     {
-        if($request['table'] == 'packingGuide')
-        {
+        if ($request['table'] == 'packingGuide') {
             $ids = $request->session()->get('stock_selected_ids', []);
 
             $wastes = GuideWaste::whereIn('id', $ids)
-                                ->with(['waste.classesWastes',
-                                        'guide',
-                                        'guide.warehouse.company',
-                                        'package',
-                                        'packingGuide',
-                                        'disposition'
-                                ])->get();
+                ->with([
+                    'waste.classesWastes',
+                    'guide',
+                    'guide.warehouse.company',
+                    'package',
+                    'packingGuide',
+                    'disposition'
+                ])->get();
 
-            $weight = $wastes->sum(function($waste){
-                                    return $waste->aprox_weight;
-                                });
+            $weight = $wastes->sum(function ($waste) {
+                return $waste->aprox_weight;
+            });
 
             // $packages = $wastes->sum(function($waste){
             //                         return $waste->package_quantity;
@@ -170,15 +223,13 @@ class PackingGuideController extends Controller
                 "weight" => round($weight, 2),
                 // "packages" => $packages
             ]);
-        }
-        elseif($request['table'] == "departure")
-        {
+        } elseif ($request['table'] == "departure") {
             $ids = $request->session()->get('pckguides_selected_ids', []);
 
             $guides = PackingGuide::whereIn('id', $ids)
-                                    ->withSum('wastes', 'actual_weight')
-                                    ->withSum('wastes', 'package_quantity')
-                                    ->get();
+                ->withSum('wastes', 'aprox_weight')
+                ->withSum('wastes', 'package_quantity')
+                ->get();
 
 
             $table = view('principal.viewManager.packingGuides.partials.components._pg-update-table', compact(
@@ -196,8 +247,8 @@ class PackingGuideController extends Controller
         $statStore = false;
         $wastes = GuideWaste::whereIn('id', $request['guides-pg-ids'])->get();
 
-        foreach($wastes as $waste){
-            if($waste->stat_stock == 1){
+        foreach ($wastes as $waste) {
+            if ($waste->stat_stock == 1) {
                 $statStore = true;
                 break;
             }
@@ -205,7 +256,7 @@ class PackingGuideController extends Controller
 
         $volum = is_numeric($request['volume']) ? $request['volume'] : null;
 
-        if(!$statStore){
+        if (!$statStore) {
 
             $packingGuide = PackingGuide::create([
                 "cod_guide" => $request['code'],
@@ -218,8 +269,7 @@ class PackingGuideController extends Controller
 
             $wastes = GuideWaste::whereIn('id', $request['guides-pg-ids'])->get();
 
-            foreach($wastes as $waste)
-            {
+            foreach ($wastes as $waste) {
                 $waste->update([
                     "stat_stock" => 1,
                     "id_packing_guide" => $packingGuide->id,
@@ -242,17 +292,17 @@ class PackingGuideController extends Controller
     public function loadInternmentGuideDetail(IntermentGuide $guide)
     {
         $guide->load([
-            'warehouse' => fn ($q) =>
-                $q->with([
-                        'lot',
-                        'company',
-                        'location',
-                        'projectArea'
-                    ]),
-            'guideWastes' => fn ($q) =>
-                $q->with([
-                    'waste.classesWastes.group',
-                ]),
+            'warehouse' => fn($q) =>
+            $q->with([
+                'lot',
+                'company',
+                'location',
+                'projectArea'
+            ]),
+            'guideWastes' => fn($q) =>
+            $q->with([
+                'waste.classesWastes.group',
+            ]),
         ]);
 
         $html = view('principal.viewManager.packingGuides.partials.components._int-guide-tables', compact(
@@ -267,15 +317,15 @@ class PackingGuideController extends Controller
     public function loadPackingGuideDetail(Request $request, PackingGuide $guide)
     {
         $guide = $guide->where('id', $guide->id)
-                        ->with(['wastes.guide.warehouse.company',
-                                'wastes.waste.classesWastes',
-                                'wastes.package',
-                                'wastes.packingGuide',
-                                'wastes.disposition'
-                        ])
-                        ->withSum('wastes', 'actual_weight')
-                        ->withSum('wastes', 'package_quantity')
-                        ->first();
+            ->with([
+                'wastes.guide.warehouse.company',
+                'wastes.waste.classesWastes',
+                'wastes.package',
+                'wastes.packingGuide',
+                'wastes.disposition'
+            ])
+            ->withSum('wastes', 'aprox_weight')
+            ->first();
         $guides = [$guide];
 
         $html_pg = view('principal.viewManager.packingGuides.partials.components._pg-update-table', compact(
@@ -307,9 +357,7 @@ class PackingGuideController extends Controller
             $html = view('principal.viewManager.packingGuides.partials.components._waste-partition-table', compact(
                 'waste'
             ))->render();
-
         } catch (Exception $e) {
-
         }
 
         return response()->json([
@@ -324,8 +372,8 @@ class PackingGuideController extends Controller
             $success = $this->stockWastesService->storeWastePartitions($waste, $request);
             $message = 'Registro actualizado exitosamente';
         } catch (Exception $e) {
-            $message = 'Ocurrió un error inesperado'.
-            $success = false;
+            $message = 'Ocurrió un error inesperado' .
+                $success = false;
         }
 
         return response()->json([
@@ -337,15 +385,15 @@ class PackingGuideController extends Controller
     public function updateDeparturePg(Request $request)
     {
         $guides = PackingGuide::whereIn('id', $request['guides-departure-selected'])
-                            ->update([
-                                "date_departure" => $request['date'],
-                                "shipping_type" => $request['transport-type'],
-                                "destination" => $request['destination'],
-                                "ppc_code" => $request['n-guideppc'],
-                                "manifest_code" => $request['n-manifest'],
+            ->update([
+                "date_departure" => $request['date'],
+                "shipping_type" => $request['transport-type'],
+                "destination" => $request['destination'],
+                "ppc_code" => $request['n-guideppc'],
+                "manifest_code" => $request['n-manifest'],
 
-                                "status" => 1,
-                            ]);
+                "status" => 1,
+            ]);
 
         $request->session()->put('pckguides_selected_ids', []);
 
@@ -361,12 +409,13 @@ class PackingGuideController extends Controller
 
     public function editDeparturePg(PackingGuide $guide)
     {
-        $guide->load(['wastes.guide.warehouse.company',
-                    'wastes.waste.classesWastes',
-                    'wastes.package',
-                    'wastes.packingGuide',
-                    'wastes.disposition'
-            ])
+        $guide->load([
+            'wastes.guide.warehouse.company',
+            'wastes.waste.classesWastes',
+            'wastes.package',
+            'wastes.packingGuide',
+            'wastes.disposition'
+        ])
             ->loadSum('wastes', 'actual_weight')
             ->loadSum('wastes', 'package_quantity');
 
@@ -407,11 +456,11 @@ class PackingGuideController extends Controller
     public function exportWastesExcel(Request $request)
     {
         $date_info = $request->filled('from_date') &&
-                    $request->filled('end_date') ?
-                    $request->from_date.'_'.$request->end_date :
-                    'Todo';
+            $request->filled('end_date') ?
+            $request->from_date . '_' . $request->end_date :
+            'Todo';
 
-        $file_name = 'detalle-residuos-verificados_gestor-'. Auth::user()->name .'_'. $date_info .'_'. Carbon::now()->format('h_i_s') . '.xlsx';
+        $file_name = 'detalle-residuos-verificados_gestor-' . Auth::user()->name . '_' . $date_info . '_' . Carbon::now()->format('h_i_s') . '.xlsx';
 
         $from_date = $request->from_date ?? '';
         $end_date = $request->end_date ?? '';
@@ -425,11 +474,11 @@ class PackingGuideController extends Controller
     public function exportWastesDeparturesExcel(Request $request)
     {
         $date_info = $request->filled('from_date') &&
-                    $request->filled('end_date') ?
-                    $request->from_date.'_'.$request->end_date :
-                    'Todo';
+            $request->filled('end_date') ?
+            $request->from_date . '_' . $request->end_date :
+            'Todo';
 
-        $file_name = 'detalle-carga_gestor-'. Auth::user()->name .'_'. $date_info .'_'. Carbon::now()->format('h_i_s') . '.xlsx';
+        $file_name = 'detalle-carga_gestor-' . Auth::user()->name . '_' . $date_info . '_' . Carbon::now()->format('h_i_s') . '.xlsx';
 
         $from_date = $request->from_date ?? '';
         $end_date = $request->end_date ?? '';

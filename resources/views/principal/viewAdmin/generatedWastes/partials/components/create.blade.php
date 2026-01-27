@@ -16,7 +16,6 @@
                 <span class="datepicker-label">
                     Fecha:
                 </span>
-
                 <input type="text" class="input-sm form-control" name="guide_date" id="guide_date_picker" />
             </div>
         </div>

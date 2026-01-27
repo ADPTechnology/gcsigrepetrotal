@@ -159,7 +159,6 @@
             @endif --}}
 
             @if (Auth::user()->role->name == 'ADMINISTRADOR')
-
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="nav-link has-dropdown">
                         <span>v Internamiento</span>
@@ -206,14 +205,14 @@
                         <span>Gestión Externa</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="">
-                            <a href="" class="nav-link">
+                        <li class="{{ setActive('stock.external') }}">
+                            <a href="{{ route('stock.external') }}" class="nav-link">
                                 <i class="fa-solid fa-circle fa-2xs"></i>
                                 Stock & G.Externa
                             </a>
                         </li>
-                        <li class="">
-                            <a href="" class="nav-link">
+                        <li class="{{ setActive('dashboard.extManagementIndex') }}">
+                            <a href="{{ route('dashboard.extManagementIndex') }}" class="nav-link">
                                 <i class="fa-solid fa-circle fa-2xs"></i>
                                 Reporte G.Externa
                             </a>

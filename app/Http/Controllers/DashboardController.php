@@ -67,6 +67,8 @@ class DashboardController extends Controller
             $groups
         ] = $this->dashboardService->getDashBoardInitialData($this->dashboardService->getInterManagementQuery(), 'INTMANAGEMENT');
 
+        $title = 'REPORTE GESTIÓN INTERNA';
+        $route = route('dashboard.interManagementIndex');
 
         return view('principal.common.dashboard.int_dashboard', compact(
             'min_date',
@@ -77,7 +79,45 @@ class DashboardController extends Controller
             'companies',
             'classes',
             'wasteTypes',
-            'groups'
+            'groups',
+            'title',
+            'route'
+        ));
+    }
+
+    public function extManagementIndex(Request $request)
+    {
+        if ($request->ajax()) {
+            return $this->dashboardService->getDashboardData($request, 'EXTMANAGEMENT');
+        }
+
+        [
+            $min_date,
+            $max_date,
+            $lots,
+            $locations,
+            $projects,
+            $companies,
+            $classes,
+            $wasteTypes,
+            $groups
+        ] = $this->dashboardService->getDashBoardInitialData($this->dashboardService->getExtManagementQuery(), 'EXTMANAGEMENT');
+
+        $title = 'REPORTE GESTIÓN EXTERNA';
+        $route = route('dashboard.extManagementIndex');
+
+        return view('principal.common.dashboard.int_dashboard', compact(
+            'min_date',
+            'max_date',
+            'lots',
+            'locations',
+            'projects',
+            'companies',
+            'classes',
+            'wasteTypes',
+            'groups',
+            'title',
+            'route'
         ));
     }
 

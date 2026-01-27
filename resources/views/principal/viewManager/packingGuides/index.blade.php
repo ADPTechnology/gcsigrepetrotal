@@ -7,7 +7,7 @@
             <div class="card page-title-container">
                 <div class="card-header">
                     <div class="total-width-container">
-                        <h4>Stock</h4>
+                        <h4>Stock Gestión {{ $gestion_type == 'INTERNA' ? 'Interna' : 'Externa' }}</h4>
                     </div>
                 </div>
             </div>
@@ -144,8 +144,7 @@
                             <label class="form-label">Residuo</label>
 
                             <div class="select-disabled container-select">
-                                <select name="waste_type_select" class="form-control select2"
-                                    id="waste_stock_type_select">
+                                <select name="waste_type_select" class="form-control select2" id="waste_stock_type_select">
                                     <option></option>
                                 </select>
                             </div>
@@ -232,8 +231,7 @@
                     </div> --}}
                 </form>
 
-                <table id="interment-wastes-table-manager" class="table table-hover"
-                    data-url="{{ route('stock.index') }}">
+                <table id="interment-wastes-table-manager" class="table table-hover" data-url="{{ url()->current() }}">
                     <thead>
                         <tr>
                             <th></th>
@@ -323,8 +321,9 @@
                             <label class="form-label">Clase</label>
 
                             <div>
-                                <select data-url="{{ route('loadWasteTypes.manager') }}" name="waste_class_select_departure"
-                                    class="form-control select2" id="waste_departure_class_select">
+                                <select data-url="{{ route('loadWasteTypes.manager') }}"
+                                    name="waste_class_select_departure" class="form-control select2"
+                                    id="waste_departure_class_select">
                                     <option></option>
                                     @foreach ($waste_classes as $waste_class)
                                         <option value="{{ $waste_class->id }}">{{ $waste_class->symbol }}</option>
@@ -372,11 +371,11 @@
                     </div> --}}
                 </form>
 
-                <table id="packing-guides-table-manager" class="table table-hover"
-                    data-url="{{ route('stock.index') }}">
+                <table id="packing-guides-table-manager" class="table table-hover" data-url="{{ url()->current() }}">
                     <thead>
                         <tr>
                             <th></th>
+                            <th>ID</th>
                             <th>Cod. Guía Interna</th>
                             <th>Cod. Manejo Interno</th>
                             <th>Grupo</th>
@@ -384,6 +383,7 @@
                             <th>Peso (kg)</th>
                             <th>Volum (Opc)</th>
                             <th>Tipo de Manejo</th>
+                            <th>Estado de Manejo</th>
                             <th>Estado de Manejo</th>
                             <th>Fecha de Manejo</th>
                             <th>Año Mes</th>
@@ -578,7 +578,6 @@
                                     <tr>
                                         <th>Registro de salida de los residuos</th>
                                         <th>Peso total (Kg)</th>
-                                        <th>Total bultos</th>
                                         <th>Volumen (m3)</th>
                                         <th>Fecha de salida de los residuos</th>
                                         <th>Estado salida</th>

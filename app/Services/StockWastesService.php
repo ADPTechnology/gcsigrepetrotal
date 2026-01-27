@@ -99,19 +99,15 @@ class StockWastesService
             $packingGuides = $this->getQueryFilters('packing', $request);
 
             $allPackingGuides = DataTables::of($packingGuides)
-                // ->addColumn('choose', function ($packingGuide) {
-                //     $checkbox = '<div class="custom-checkbox custom-control">
-                //                             <input type="checkbox" name="packingGuides-selected[]"  data-status="' . $packingGuide->status . '" class="custom-control-input" id="packingCheckbox-' . $packingGuide->id . '" value="' . $packingGuide->id . '">
-                //                             <label for="packingCheckbox-' . $packingGuide->id . '" class="custom-control-label checkbox-packingGuide-label">&nbsp;</label>
-                //                         </div>';
-                //     return $checkbox;
-                // })
                 ->editColumn('cod_guide', function ($packingGuide) {
                     $link = '<a href="" class="btn-show-packingGuide" data-url="' . route('loadPackingGuideDetail.manager', ["guide" => $packingGuide]) . '">' . $packingGuide->cod_guide . '</a>';
                     return $link;
                 })
                 ->addColumn('first_waste.waste.classes_wastes.group.name', function ($packingGuide) {
-                    return $packingGuide->firstWaste->waste->classesWastes->first()->group->name ?? '-';
+                    if ($packingGuide->firstWaste) {
+                        return $packingGuide->firstWaste->waste->classesWastes->first()->group->name ?? '-';
+                    }
+                    return '-';
                 })
                 // ->editColumn('total_weigth', function ($packingGuide) {
                 //     return $packingGuide->wastes_sum_actual_weight;
@@ -326,7 +322,7 @@ class StockWastesService
                 'guide_wastes.*'
             )
                 ->has('guide')
-                ->where('gestion_type', 'INTERNA')
+                ->where('gestion_type', $request->input('gestion_type', 'INTERNA'))
 
                 // ->whereHas('guide', function ($query) {
                 //     $query->where('stat_approved', 1)
@@ -408,7 +404,12 @@ class StockWastesService
             return $query;
         }
         if ($table == 'packing') {
+
             $query = PackingGuide::select('packing_guides.*')
+                ->has('wastes')
+                ->whereHas('wastes', function ($q) use ($request) {
+                    $q->where('gestion_type', $request->input('gestion_type', 'INTERNA'));
+                })
                 ->with([
                     'firstWaste.guide',
                     'firstWaste.waste.classesWastes.group',

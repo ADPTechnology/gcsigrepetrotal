@@ -7,12 +7,12 @@
             <div class="card page-title-container">
                 <div class="card-header">
                     <div class="total-width-container">
-                        <h4>REPORTE GESTIÓN INTERNA</h4>
+                        <h4>{{ $title }}</h4>
                     </div>
                 </div>
             </div>
 
-            @include('principal.common.dashboard.components._dashboard_content', ['route' => route('dashboard.interManagementIndex')])
+            @include('principal.common.dashboard.components._dashboard_content', ['route' => $route])
 
         </div>
     </div>

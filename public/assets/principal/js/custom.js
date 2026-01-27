@@ -4619,7 +4619,18 @@ $(() => {
                     let waste_class = data.waste_class
                     let gestion_types = data.gestion_types
 
-                    form.find('#code_guide_waste').html(guide.code)
+                    form.find('input[name=code_guide_waste]').val(guide.code)
+
+                    var datepickerContainer = form.find('#datepicker_edit_guide');
+                    datepickerContainer.datepicker({
+                        language: 'es',
+                        orientation: "bottom auto",
+                        autoclose: true,
+                        format: 'dd/mm/yyyy'
+                    });
+
+                    var createdAt = moment(guide.created_at).format('DD/MM/YYYY');
+                    datepickerContainer.find('input[name=guide_date]').datepicker('update', createdAt);
 
                     $.each(guide, function (key, value) {
                         let input = form.find("[name=" + key + "]");
@@ -6788,7 +6799,6 @@ $(() => {
                 }
             },
             columns: [
-                // { data: 'choose', name: 'choose', orderable: false, searchable: false, className: 'not-export-col' },
                 { data: null, render: DataTable.render.select(), orderable: false, className: 'not-export-col' },
                 { data: 'id', name: 'id', orderable: false, searchable: false },
                 { data: 'first_waste.guide.id', name: 'firstWaste.guide.id' },
@@ -7158,7 +7168,18 @@ $(() => {
                     let waste_class = data.waste_class
                     let gestion_types = data.gestion_types
 
-                    form.find('#code_guide_waste').html(guide.code)
+                    form.find('input[name=code_guide_waste]').val(guide.code)
+
+                    var datepickerContainer = form.find('#datepicker_edit_guide');
+                    datepickerContainer.datepicker({
+                        language: 'es',
+                        orientation: "bottom auto",
+                        autoclose: true,
+                        format: 'dd/mm/yyyy'
+                    });
+
+                    var createdAt = moment(guide.created_at).format('DD/MM/YYYY');
+                    datepickerContainer.find('input[name=guide_date]').datepicker('update', createdAt);
 
                     $.each(guide, function (key, value) {
                         let input = form.find("[name=" + key + "]");

@@ -22,9 +22,13 @@ class DashboardService
         } else if ($location == 'INTMANAGEMENT') {
             $main_query = $this->getInterManagementDashboardQuery();
             $date_string = 'packing_guides.date_guides_departure';
+        } else if ($location == 'EXTMANAGEMENT') {
+            $main_query = $this->getExtManagementDashboardQuery();
+            $date_string = 'packing_guides.date_guides_departure';
         }
 
         if (!isset($main_query)) return;
+
 
         if ($request->filled('min_date') && $request->filled('max_date')) {
 
@@ -335,7 +339,7 @@ class DashboardService
             $max_date = (clone $base_query)
                 ->selectRaw('MAX(internment_guides.created_at) AS max_date')
                 ->first()->max_date;
-        } else if ($location == 'INTMANAGEMENT') {
+        } else if ($location == 'INTMANAGEMENT' || $location == 'EXTMANAGEMENT') {
             $min_date = (clone $base_query)
                 ->selectRaw('MIN(packing_guides.date_guides_departure) AS min_date')
                 ->first()->min_date;
@@ -467,6 +471,35 @@ class DashboardService
             ->has('guide')
             ->has('packingGuide')
             ->where('gestion_type', 'INTERNA')
+            ->where('stat_stock', 1);
+    }
+
+    // * GESTION EXTERNA
+
+    public function getExtManagementDashboardQuery()
+    {
+        $main_query = $this->getExtManagementQuery()
+            ->join('warehouses', 'warehouses.id', '=', 'internment_guides.id_warehouse')
+            ->join('lots', 'lots.id', '=', 'warehouses.id_lot')
+            ->join('locations', 'locations.id', '=', 'warehouses.id_location')
+            ->join('project_areas', 'project_areas.id', '=', 'warehouses.id_project_area')
+            ->join('companies', 'companies.id', '=', 'warehouses.id_company')
+            ->join('classes_has_wastes', 'guide_wastes.id_wasteType', '=', 'classes_has_wastes.id_waste')
+            ->join('waste_classes', 'waste_classes.id', '=', 'classes_has_wastes.id_class')
+            ->join('groups', 'groups.id', '=', 'waste_classes.group_id')
+            ->join('waste_types', 'guide_wastes.id_wasteType', '=', 'waste_types.id');
+        // ->join('packing_guides', 'packing_guides.id', '=', 'guide_wastes.id_packing_guide');
+
+        return $main_query;
+    }
+
+    public function getExtManagementQuery()
+    {
+        return GuideWaste::join('internment_guides', 'guide_wastes.id_guide', '=', 'internment_guides.id')
+            ->join('packing_guides', 'packing_guides.id', '=', 'guide_wastes.id_packing_guide')
+            ->has('guide')
+            ->has('packingGuide')
+            ->where('gestion_type', 'EXTERNA')
             ->where('stat_stock', 1);
     }
 }

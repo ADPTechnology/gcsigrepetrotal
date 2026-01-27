@@ -2,8 +2,7 @@
 <tr>
     <input type="hidden" value="{{ $guide->id }}" name="guides-departure-selected[]">
     <td>{{ $guide->cod_guide ?? '' }}</td>
-    <td>{{ $guide->wastes_sum_actual_weight ?? '' }}</td>
-    <td>{{ $guide->wastes_sum_package_quantity ?? '' }}</td>
+    <td>{{ $guide->wastes_sum_aprox_weight ?? '' }}</td>
     <td>{{ $guide->volum ?? '-' }}</td>
     <td>{{ $guide->date_guides_departure ?? '-' }}</td>
     <td>

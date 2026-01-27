@@ -18,9 +18,17 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label>N° Guía de Internamiento</label>
-                            <div id="code_guide_waste" class="disabled-txt-input">
+                            <input type="text" name="code_guide_waste" id="code_guide_waste" class="form-control"
+                                required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Fecha</label>
+                            <div class="datepicker-range-container input-daterange input-group w-100"
+                                id="datepicker_edit_guide">
+                                <input type="text" class="input-sm form-control" name="guide_date"
+                                    id="guide_date_picker_edit" required />
                             </div>
                         </div>
                     </div>
@@ -45,7 +53,8 @@
                     <div class="form-row">
                         <div class="form-group col-12">
                             <label>Clase *</label>
-                            <select data-url="{{ route('guides.getDataWarehouse') }}" name="class_symbol" class="form-control select2" id="editClassSymbolSelect" required>
+                            <select data-url="{{ route('guides.getDataWarehouse') }}" name="class_symbol"
+                                class="form-control select2" id="editClassSymbolSelect" required>
                                 <option></option>
                             </select>
                         </div>
@@ -59,7 +68,8 @@
 
                         <div class="form-group col-12">
                             <label>Gestión *</label>
-                            <select name="gestion_type" class="form-control select2" id="editGestionTypeSelect" required>
+                            <select name="gestion_type" class="form-control select2" id="editGestionTypeSelect"
+                                required>
                                 <option></option>
                             </select>
                         </div>

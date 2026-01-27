@@ -30,14 +30,26 @@ class GuideWasteService
         //     ]);
         // }
 
-        $waste = $waste->update([
+        if ($request->has('code_guide_waste') && $request->has('guide_date')) {
+            $waste->load('guide');
+            $guide = $waste->guide;
+
+            $original_date = Carbon::parse($guide->created_at);
+            $date_part = Carbon::createFromFormat('d/m/Y', $request->guide_date);
+            $final_timestamp = $date_part->setTimeFrom($original_date);
+
+            $guide->update([
+                'code' => $request->code_guide_waste,
+                'created_at' => $final_timestamp
+            ]);
+        }
+
+        $waste->update([
             'id_wasteType' => $request->waste_type,
-            // 'id_packageType' => $request->package_type,
             'aprox_weight' => $request->aprox_weight,
             'gestion_type' => $request->gestion_type
         ]);
 
         return $waste;
     }
-
 }
