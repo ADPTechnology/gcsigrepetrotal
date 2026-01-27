@@ -610,7 +610,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Fecha de salida {{ $gestion_type == 'INTERNA' ? '' : 'Malvinas' }} *</label>
+                                <label>Fecha de salida *</label>
                                 <div class="input-group">
                                     <input type="text" name="date" class="form-control datetimepicker" required>
                                     <div class="input-group-prepend">
@@ -638,7 +638,7 @@
                         <div class="form-row">
 
                             <div class="form-group col-md-6">
-                                <label for="transport-type-select">N° de Guía PPC *</label>
+                                <label for="transport-type-select">N° de Guía {{ $gestion_type == 'INTERNA' ? 'PPC' : '' }} *</label>
                                 <input type="text" name="n-guideppc" class="form-control" required>
                             </div>
                             <div class="form-group col-md-6">
