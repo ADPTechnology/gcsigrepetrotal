@@ -376,8 +376,12 @@
                         <tr>
                             <th></th>
                             <th>ID</th>
-                            <th>Cod. Guía Interna</th>
-                            <th>Cod. Manejo Interno</th>
+                            <th>
+                                Cod. Guía {{ $gestion_type == 'INTERNA' ? 'Interna' : 'Externa' }}
+                            </th>
+                            <th>
+                                Cod. Manejo {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }}
+                            </th>
                             <th>Grupo</th>
                             <th>Tipo de Residuo</th>
                             <th>Peso (kg)</th>
@@ -410,7 +414,7 @@
                         <div class="section-title mt-0">
                             <i class="fa-solid fa-layer-group"></i> &nbsp;
                             <span id="txt-context-element">
-                                Realizar Grupo
+                                Realizar Grupo {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }}
                             </span>
                         </div>
                     </h5>
@@ -468,11 +472,11 @@
                             <div class="form-group col-md-4">
                                 <label for="inputGuideCode">Cod. Guía Manejo *</label>
                                 <input type="text" name="code" class="form-control"
-                                    placeholder="Ingresar guía interna" required>
+                                    placeholder="Ingresar guía {{ $gestion_type == 'INTERNA' ? 'interna' : '' }}" required>
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="management-type-select">Tipo de Manejo Interno *</label>
+                                <label for="management-type-select">Tipo de Manejo {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }} *</label>
                                 <select name="inter_management_id" id="management-type-select"
                                     class="form-control select2" required>
                                     <option></option>
@@ -485,7 +489,7 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label>Fecha de Manejo Interno *</label>
+                                <label>Fecha de Manejo {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }} *</label>
                                 <div class="input-group">
                                     <input type="text" name="date" class="form-control datetimepicker" required>
                                     <div class="input-group-prepend">
@@ -553,7 +557,7 @@
                         <div class="section-title mt-0">
                             <i class="fa-solid fa-truck-moving"></i> &nbsp;
                             <span id="txt-context-element">
-                                Realizar Manejo Interno
+                                Realizar Manejo {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }}
                             </span>
                         </div>
                     </h5>
@@ -597,12 +601,16 @@
                                 <select name="transport-type" id="transport-type-select" class="form-control select2"
                                     required>
                                     <option></option>
-                                    <option value="Aéreo">Aéreo</option>
-                                    <option value="Fluvial">Fluvial</option>
+                                    @if ($gestion_type == 'INTERNA')
+                                        <option value="Local">Local</option>
+                                    @else
+                                        <option value="Aéreo">Aéreo</option>
+                                        <option value="Fluvial">Fluvial</option>
+                                    @endif
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Fecha de salida Malvinas *</label>
+                                <label>Fecha de salida {{ $gestion_type == 'INTERNA' ? '' : 'Malvinas' }} *</label>
                                 <div class="input-group">
                                     <input type="text" name="date" class="form-control datetimepicker" required>
                                     <div class="input-group-prepend">
@@ -617,8 +625,12 @@
                                 <label for="destination-select">Destino de la carga *</label>
                                 <select name="destination" id="destination-select" class="form-control select2" required>
                                     <option></option>
-                                    <option value="Lima">Lima</option>
-                                    <option value="Pucallpa">Pucallpa</option>
+                                    @if ($gestion_type == 'INTERNA')
+                                        <option value="Local">Local</option>
+                                    @else
+                                        <option value="Lima">Lima</option>
+                                        <option value="Pucallpa">Pucallpa</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>
