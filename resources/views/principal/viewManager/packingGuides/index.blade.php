@@ -7,7 +7,7 @@
             <div class="card page-title-container">
                 <div class="card-header">
                     <div class="total-width-container">
-                        <h4>Stock Gestión {{ $gestion_type == 'INTERNA' ? 'Interna' : 'Externa' }}</h4>
+                        <h4>Stock Y Gestión {{ $gestion_type == 'INTERNA' ? 'Interna' : 'Externa' }}</h4>
                     </div>
                 </div>
             </div>

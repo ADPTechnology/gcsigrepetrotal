@@ -7812,6 +7812,37 @@ $(() => {
                     var container = form.find('#edit_pg_form_container')
                     container.html(data.html)
 
+                    if (data.gestionType == 'EXTERNA') {
+
+                        let guide = data.guide
+                        let datepickerSailingDateContainer = form.find('#datepicker_sailing_date');
+
+                        datepickerSailingDateContainer.datepicker('destroy');
+                        datepickerSailingDateContainer.datepicker({
+                            language: 'es',
+                            orientation: "bottom auto",
+                            autoclose: true,
+                            format: 'dd/mm/yyyy'
+                        });
+
+                        var sailingDate = moment(guide.sailing_date).format('DD/MM/YYYY');
+                        datepickerSailingDateContainer.find('input[name=sailing_date]').datepicker('update', sailingDate);
+
+                        let datepickerDisposalDateContainer = form.find('#datepicker_disposal_date');
+
+                        datepickerDisposalDateContainer.datepicker('destroy');
+                        datepickerDisposalDateContainer.datepicker({
+                            language: 'es',
+                            orientation: "bottom auto",
+                            autoclose: true,
+                            format: 'dd/mm/yyyy'
+                        });
+
+                        var disposalDate = moment(guide.disposal_date).format('DD/MM/YYYY');
+                        datepickerDisposalDateContainer.find('input[name=disposal_date]').datepicker('update', disposalDate);
+
+                    }
+
                     modal.modal('show')
                 },
                 error: function (data) {

@@ -233,7 +233,7 @@ class PackingGuideController extends Controller
 
 
             $table = view('principal.viewManager.packingGuides.partials.components._pg-update-table', compact(
-                'guides'
+                'guides',
             ))->render();
 
             return response()->json([
@@ -314,7 +314,7 @@ class PackingGuideController extends Controller
         ]);
     }
 
-    public function loadPackingGuideDetail(Request $request, PackingGuide $guide)
+    public function loadPackingGuideDetail(Request $request, PackingGuide $guide, $gestion_type)
     {
         $guide = $guide->where('id', $guide->id)
             ->with([
@@ -329,7 +329,8 @@ class PackingGuideController extends Controller
         $guides = [$guide];
 
         $html_pg = view('principal.viewManager.packingGuides.partials.components._pg-update-table', compact(
-            'guides'
+            'guides',
+            'gestion_type'
         ))->render();
 
         $wastes = $guide->wastes;
@@ -407,7 +408,7 @@ class PackingGuideController extends Controller
         ]);
     }
 
-    public function editDeparturePg(PackingGuide $guide)
+    public function editDeparturePg(PackingGuide $guide, $gestionType)
     {
         $guide->load([
             'wastes.guide.warehouse.company',
@@ -416,29 +417,50 @@ class PackingGuideController extends Controller
             'wastes.packingGuide',
             'wastes.disposition'
         ])
-            ->loadSum('wastes', 'actual_weight')
+            ->loadSum('wastes', 'aprox_weight')
             ->loadSum('wastes', 'package_quantity');
 
         $guides = [$guide];
 
         $html = view('principal.viewManager.packingGuides.partials.components._form_pg_wastes', compact(
             'guides',
-            'guide'
+            'guide',
+            'gestionType'
         ))->render();
 
         return response()->json([
             'html' => $html,
-            'guide' => $guide
+            'guide' => $guide,
+            'gestionType' => $gestionType
         ]);
     }
 
-    public function editUpdatePackingGuide(Request $request, PackingGuide $guide)
+    public function editUpdatePackingGuide(Request $request, PackingGuide $guide, $gestion_type)
     {
         $success = false;
 
         if ($guide->status == 1) {
             $guide->update([
                 'manifest_code' => $request->manifest_code
+            ]);
+
+            $success = true;
+        }
+
+        if ($gestion_type == 'EXTERNA') {
+            $guide->update([
+                'sailing_date' => Carbon::createFromFormat('d/m/Y', $request->sailing_date),
+                'barge' => $request->barge,
+                'packages' => $request->packages,
+                'packaging_type' => $request->packaging_type,
+                'crane_weight_kg' => $request->crane_weight_kg,
+                'carrier_guide' => $request->carrier_guide,
+                'plate_number' => $request->plate_number,
+                'greencare_guide' => $request->greencare_guide,
+                'disposal_date' => Carbon::createFromFormat('d/m/Y', $request->disposal_date),
+                'weighing_receipt' => $request->weighing_receipt,
+                'ddff_weight_kg' => $request->ddff_weight_kg,
+                'disposal_company' => $request->disposal_company,
             ]);
 
             $success = true;

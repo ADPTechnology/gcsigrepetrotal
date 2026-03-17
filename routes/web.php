@@ -172,11 +172,11 @@ Route::group(['middleware' => ['auth', 'check.valid.user']], function () {
             Route::get('/gestor/cargar-tipos-de-residuos', 'loadWasteTypes')->name('loadWasteTypes.manager');
 
             Route::get('/gestor/cargar-detalle-de-guia-internamiento/{guide}', 'loadInternmentGuideDetail')->name('loadInternmentGuide.manager');
-            Route::get('/gestor/cargar-detalle-de-carga/{guide}', 'loadPackingGuideDetail')->name('loadPackingGuideDetail.manager');
-            Route::get('/gestor/stock-almacén/editar-carga/{guide}', 'editDeparturePg')->name('editPackingGuideDeparture.manager');
+            Route::get('/gestor/cargar-detalle-de-carga/{guide}/{gestion_type}', 'loadPackingGuideDetail')->name('loadPackingGuideDetail.manager');
+            Route::get('/gestor/stock-almacén/editar-carga/{guide}/{gestionType}', 'editDeparturePg')->name('editPackingGuideDeparture.manager');
             Route::post('/gestor/stock-almacén/registrar-guia-de-embalaje', 'storePackageGuide')->name('stock.storePg.manager');
             Route::post('/gestor/stock-almacén/registrar-salida', 'updateDeparturePg')->name('updatePackingGuideDeparture.manager');
-            Route::post('/gestor/stock-almacén/actualizar-carga/{guide}', 'editUpdatePackingGuide')->name('edit.updatePGdeparture.manager');
+            Route::post('/gestor/stock-almacén/actualizar-carga/{guide}/{gestionType}', 'editUpdatePackingGuide')->name('edit.updatePGdeparture.manager');
 
             Route::post('/gestor/guardar-particiones/{waste}', 'storeWastePartitions')->name('storeWastePartitions.manager');
 

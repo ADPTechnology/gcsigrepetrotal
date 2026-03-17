@@ -98,9 +98,11 @@ class StockWastesService
 
             $packingGuides = $this->getQueryFilters('packing', $request);
 
+            $gestion_type = $request['gestion_type'];
+
             $allPackingGuides = DataTables::of($packingGuides)
-                ->editColumn('cod_guide', function ($packingGuide) {
-                    $link = '<a href="" class="btn-show-packingGuide" data-url="' . route('loadPackingGuideDetail.manager', ["guide" => $packingGuide]) . '">' . $packingGuide->cod_guide . '</a>';
+                ->editColumn('cod_guide', function ($packingGuide) use ($gestion_type) {
+                    $link = '<a href="" class="btn-show-packingGuide" data-url="' . route('loadPackingGuideDetail.manager', ["guide" => $packingGuide, 'gestion_type' => $gestion_type]) . '">' . $packingGuide->cod_guide . '</a>';
                     return $link;
                 })
                 ->addColumn('first_waste.waste.classes_wastes.group.name', function ($packingGuide) {
@@ -155,14 +157,14 @@ class StockWastesService
                 ->editColumn('comment', function ($packingGuide) {
                     return $packingGuide->comment ?? '-';
                 })
-                ->addColumn('action', function ($packingGuide) {
+                ->addColumn('action', function ($packingGuide) use ($gestion_type) {
 
                     $btn = '';
 
-                    if ($packingGuide->status == 1) {
+                    if ($packingGuide->status == 1 || $gestion_type == 'EXTERNA') {
                         $btn .= '<button data-id="' . $packingGuide->id . '"
-                                        data-send="' . route('editPackingGuideDeparture.manager', ["guide" => $packingGuide]) . '"
-                                        data-url="' . route('edit.updatePGdeparture.manager', ["guide" => $packingGuide]) . '"
+                                        data-send="' . route('editPackingGuideDeparture.manager', ["guide" => $packingGuide, "gestionType" => $gestion_type]) . '"
+                                        data-url="' . route('edit.updatePGdeparture.manager', ["guide" => $packingGuide, "gestionType" => $gestion_type]) . '"
                                         data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
                                         edit_packing_guide"><i class="fa-solid fa-pen-to-square"></i>
                                     </button>';
