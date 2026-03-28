@@ -100,7 +100,89 @@ class StockWastesService
 
             $gestion_type = $request['gestion_type'];
 
-            $allPackingGuides = DataTables::of($packingGuides)
+            if ($gestion_type == "EXTERNA") {
+
+                $allPackingGuides = DataTables::of($packingGuides)
+                ->editColumn('cod_guide', function ($packingGuide) use ($gestion_type) {
+                    $link = '<a href="" class="btn-show-packingGuide" data-url="' . route('loadPackingGuideDetail.manager', ["guide" => $packingGuide, 'gestion_type' => $gestion_type]) . '">' . $packingGuide->cod_guide . '</a>';
+                    return $link;
+                })
+                ->addColumn('first_waste.waste.classes_wastes.group.name', function ($packingGuide) {
+                    if ($packingGuide->firstWaste) {
+                        return $packingGuide->firstWaste->waste->classesWastes->first()->group->name ?? '-';
+                    }
+                    return '-';
+                })
+                // ->editColumn('total_weigth', function ($packingGuide) {
+                //     return $packingGuide->wastes_sum_actual_weight;
+                // })
+                // ->editColumn('total_packages', function ($packingGuide) {
+                //     return $packingGuide->wastes_sum_package_quantity;
+                // })
+                ->editColumn('volum', function ($packingGuide) {
+                    return $packingGuide->volum ?? '-';
+                })
+                ->editColumn('inter_management.name', function ($packingGuide) {
+                    return $packingGuide->interManagement->name ?? '-';
+                })
+                ->editColumn('status_bool', function ($packingGuide) {
+                    return $packingGuide->status;
+                })
+                ->editColumn('status', function ($packingGuide) {
+                    $status = '<span class="info-guide-pending">
+                                            Pendiente
+                                        </span>';
+                    if ($packingGuide->status == 1) {
+                        $status = '<span class="info-guide-checked">
+                                                Gestionado
+                                            </span>';
+                    }
+                    return $status;
+                })
+                
+                ->editColumn('sailing_date', function ($packingGuide) {
+                    return $packingGuide->sailing_date ? getOnlyDate($packingGuide->sailing_date) : '-';
+                })
+                ->editColumn('crane_weight_tn', function ($packingGuide) {
+                    return $packingGuide->crane_weight_kg ? $packingGuide->crane_weight_kg / 1000 : '-';
+                })
+                ->editColumn('disposal_date', function ($packingGuide) {
+                    return $packingGuide->disposal_date ? getOnlyDate($packingGuide->disposal_date) : '-';
+                })
+                ->editColumn('ddff_weight_tn', function ($packingGuide) {
+                    return $packingGuide->ddff_weight_kg ? $packingGuide->ddff_weight_kg / 1000 : '-';
+                })
+
+                ->editColumn('date_guides_departure', function ($packingGuide) {
+                    return getOnlyDate($packingGuide->date_guides_departure);
+                })
+                ->addColumn('year_month', function ($packingGuide) {
+                    return Carbon::parse($packingGuide->date_guides_departure)->format('Y-m');
+                })
+                ->editColumn('comment', function ($packingGuide) {
+                    return $packingGuide->comment ?? '-';
+                })
+                ->addColumn('action', function ($packingGuide) use ($gestion_type) {
+
+                    $btn = '';
+
+                    if ($packingGuide->status == 1 || $gestion_type == 'EXTERNA') {
+                        $btn .= '<button data-id="' . $packingGuide->id . '"
+                                        data-send="' . route('editPackingGuideDeparture.manager', ["guide" => $packingGuide, "gestionType" => $gestion_type]) . '"
+                                        data-url="' . route('edit.updatePGdeparture.manager', ["guide" => $packingGuide, "gestionType" => $gestion_type]) . '"
+                                        data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
+                                        edit_packing_guide"><i class="fa-solid fa-pen-to-square"></i>
+                                    </button>';
+                    }
+
+                    return  $btn;
+                })
+                ->rawColumns(['cod_guide', 'status', 'arrived_status', 'action'])
+                ->make(true);
+            }
+            else {
+
+                $allPackingGuides = DataTables::of($packingGuides)
                 ->editColumn('cod_guide', function ($packingGuide) use ($gestion_type) {
                     $link = '<a href="" class="btn-show-packingGuide" data-url="' . route('loadPackingGuideDetail.manager', ["guide" => $packingGuide, 'gestion_type' => $gestion_type]) . '">' . $packingGuide->cod_guide . '</a>';
                     return $link;
@@ -174,6 +256,7 @@ class StockWastesService
                 })
                 ->rawColumns(['cod_guide', 'status', 'arrived_status', 'action'])
                 ->make(true);
+            }
 
             return $allPackingGuides;
         }

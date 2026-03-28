@@ -6778,113 +6778,242 @@ $(() => {
             packingGuideManagerTable.ajax.reload()
         })
 
-        var packingGuideManagerTableEle = $('#packing-guides-table-manager');
-        var getDataPackingUrl = packingGuideManagerTableEle.data('url');
-        packingGuideManagerTable = packingGuideManagerTableEle.DataTable({
-            responsive: true,
-            language: DataTableEs,
-            order: [[11, 'desc']],
-            serverSide: true,
-            processing: true,
-            ajax: {
-                "url": getDataPackingUrl,
-                "data": function (data) {
-                    data.from_date = moment(fromDatepickerinputDeparture.datepicker('getDate')).format('YYYY-MM-DD')
-                    data.end_date = moment(toDatepickerinputDeparture.datepicker('getDate')).format('YYYY-MM-DD')
-                    data.table = "packing"
-                    data.status = $('input[name=filter-wastes-departure]:checked').val()
-                    data.group = groupFilterDeparture.val()
-                    data.class = $('select[name=waste_class_select_departure]').val()
-                    data.type = $('select[name=waste_type_select_departure]').val()
-                }
-            },
-            columns: [
-                { data: null, render: DataTable.render.select(), orderable: false, className: 'not-export-col' },
-                { data: 'id', name: 'id', orderable: false, searchable: false },
-                { data: 'first_waste.guide.id', name: 'firstWaste.guide.id' },
-                { data: 'cod_guide', name: 'cod_guide' },
-                { data: 'first_waste.waste.classes_wastes.group.name', name: 'first_waste.waste.classes_wastes.group.name', orderable: false, searchable: false },
-                { data: 'first_waste.waste.name', name: 'firstWaste.waste.name' },
-                { data: 'wastes_sum_aprox_weight', name: 'wastes_sum_aprox_weight' },
-                { data: 'volum', name: 'volum' },
-                { data: 'inter_management.name', name: 'interManagement.name' },
-                { data: 'status_bool', name: 'status_bool' },
-                { data: 'status', name: 'status' },
-                { data: 'date_guides_departure', name: 'date_guides_departure' },
-                { data: 'year_month', name: 'year_month', orderable: false, searchable: false },
-                { data: 'comment', name: 'comment' },
-                { data: 'action', name: 'action', orderable: false, searchable: false, className: 'action' },
-            ],
-            columnDefs: [
-                { 'visible': false, 'targets': [1, 9] }
-            ],
-            rowCallback: function (tr, rowData) {
-                if (rowData['status_bool'] === 1) {
-                    $(tr).addClass('unselectable');
-                }
-            },
-            rowId: 'id',
-            stateSave: true,
-            select: {
-                style: 'multi+shift',
-                selector: 'td:first-child',
-                selectable: function (rowData) {
-                    return rowData['status_bool'] !== 1
-                }
-            },
-            layout: {
-                topStart: {
-                    buttons: [
-                        'pageLength'
-                    ]
-                }
-            },
-            // dom: 'Bfrtlip',
-            // buttons: [
-            //     {
-            //         text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
-            //         extend: 'excelHtml5',
-            //         exportOptions: {
-            //             columns: ':not(.not-export-col)'
-            //         },
-            //         title:    function () {
-            //             var from_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').startDate.format('YYYY-MM-DD');
-            //             var end_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').endDate.format('YYYY-MM-DD');
-            //             var name = $('#excel-generated-wastespg-info').data('name');
-            //             if(from_date == '1970-01-01'){from_date = 'El principio'};
-            //              return 'DETALLE CARGA - GESTOR: '+name+' - DESDE: '+from_date+ ' - ' + 'HASTA: ' + end_date;
-            //         },
-            //         filename: function () {
-            //             var from_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').startDate.format('YYYY-MM-DD');
-            //             var end_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').endDate.format('YYYY-MM-DD');
-            //             var name = $('#excel-generated-wastespg-info').data('name');
-            //             if(from_date == '1970-01-01'){from_date = 'todos'};
-            //             return 'detalle-carga_gestor-'+name+'_'+from_date+'_' + end_date + '_' + moment().format("hh-mm-ss");
-            //         }
-            //     }
-            // ],
-            // initComplete: function () {
-            //     $.fn.dataTable.ext.search.push(
-            //       function( settings, data, dataIndex ) {
+        if ($('#gestion_type').length && $('#gestion_type').val() == 'EXTERNA') {
 
-            //         if ( settings.nTable.id !== 'packing-guides-table-manager' ) {
-            //           return true;
-            //         }
+            var packingGuideManagerTableEle = $('#packing-guides-table-manager');
+            var getDataPackingUrl = packingGuideManagerTableEle.data('url');
+            packingGuideManagerTable = packingGuideManagerTableEle.DataTable({
+                responsive: true,
+                language: DataTableEs,
+                order: [[11, 'desc']],
+                serverSide: true,
+                processing: true,
+                ajax: {
+                    "url": getDataPackingUrl,
+                    "data": function (data) {
+                        data.from_date = moment(fromDatepickerinputDeparture.datepicker('getDate')).format('YYYY-MM-DD')
+                        data.end_date = moment(toDatepickerinputDeparture.datepicker('getDate')).format('YYYY-MM-DD')
+                        data.table = "packing"
+                        data.status = $('input[name=filter-wastes-departure]:checked').val()
+                        data.group = groupFilterDeparture.val()
+                        data.class = $('select[name=waste_class_select_departure]').val()
+                        data.type = $('select[name=waste_type_select_departure]').val()
+                    }
+                },
+                columns: [
+                    { data: null, render: DataTable.render.select(), orderable: false, className: 'not-export-col' },
+                    { data: 'id', name: 'id', orderable: false, searchable: false },
+                    { data: 'first_waste.guide.id', name: 'firstWaste.guide.id' },
+                    { data: 'cod_guide', name: 'cod_guide' },
+                    { data: 'first_waste.waste.classes_wastes.group.name', name: 'first_waste.waste.classes_wastes.group.name', orderable: false, searchable: false },
+                    { data: 'first_waste.waste.name', name: 'firstWaste.waste.name' },
+                    { data: 'wastes_sum_aprox_weight', name: 'wastes_sum_aprox_weight' },
+                    { data: 'volum', name: 'volum' },
+                    { data: 'inter_management.name', name: 'interManagement.name' },
 
-            //         var min = moment($('#daterange-btn-waste-departure-manager').data('daterangepicker').startDate.format('YYYY-MM-DD')).toDate();
-            //         var max = moment($('#daterange-btn-waste-departure-manager').data('daterangepicker').endDate.format('YYYY-MM-DD')).toDate();
-            //         var startDate = moment(data[14]).toDate();
+                    { data: 'sailing_date', name: 'sailing_date' },
+                    { data: 'barge', name: 'barge' },
+                    { data: 'packages', name: 'packages' },
+                    { data: 'packaging_type', name: 'packaging_type' },
+                    { data: 'crane_weight_kg', name: 'crane_weight_kg' },
+                    { data: 'crane_weight_tn', name: 'crane_weight_tn', orderable: false, searchable: false },
+                    { data: 'carrier_guide', name: 'carrier_guide' },
+                    { data: 'plate_number', name: 'plate_number' },
+                    { data: 'greencare_guide', name: 'greencare_guide' },
+                    { data: 'disposal_date', name: 'disposal_date' },
+                    { data: 'weighing_receipt', name: 'weighing_receipt' },
+                    { data: 'ddff_weight_kg', name: 'ddff_weight_kg' },
+                    { data: 'ddff_weight_tn', name: 'ddff_weight_tn', orderable: false, searchable: false },
+                    { data: 'disposal_company', name: 'disposal_company' },
 
-            //         console.log(startDate)
-            //         if (min == null && max == null) { return true; }
-            //         if (min == null && startDate <= max) { return true;}
-            //         if(max == null && startDate >= min) {return true;}
-            //         if (startDate <= max && startDate >= min) { return true; }
-            //         return false;
-            //       }
-            //     );
-            //   }
-        });
+
+                    { data: 'status_bool', name: 'status_bool' }, // 23
+                    { data: 'status', name: 'status' },
+                    { data: 'date_guides_departure', name: 'date_guides_departure' },
+                    { data: 'year_month', name: 'year_month', orderable: false, searchable: false },
+                    { data: 'comment', name: 'comment' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false, className: 'action all' },
+                ],
+                columnDefs: [
+                    { 'visible': false, 'targets': [1, 23] }
+                ],
+                rowCallback: function (tr, rowData) {
+                    if (rowData['status_bool'] === 1) {
+                        $(tr).addClass('unselectable');
+                    }
+                },
+                rowId: 'id',
+                stateSave: true,
+                select: {
+                    style: 'multi+shift',
+                    selector: 'td:first-child',
+                    selectable: function (rowData) {
+                        return rowData['status_bool'] !== 1
+                    }
+                },
+                layout: {
+                    topStart: {
+                        buttons: [
+                            'pageLength'
+                        ]
+                    }
+                },
+                // dom: 'Bfrtlip',
+                // buttons: [
+                //     {
+                //         text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                //         extend: 'excelHtml5',
+                //         exportOptions: {
+                //             columns: ':not(.not-export-col)'
+                //         },
+                //         title:    function () {
+                //             var from_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').startDate.format('YYYY-MM-DD');
+                //             var end_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').endDate.format('YYYY-MM-DD');
+                //             var name = $('#excel-generated-wastespg-info').data('name');
+                //             if(from_date == '1970-01-01'){from_date = 'El principio'};
+                //              return 'DETALLE CARGA - GESTOR: '+name+' - DESDE: '+from_date+ ' - ' + 'HASTA: ' + end_date;
+                //         },
+                //         filename: function () {
+                //             var from_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').startDate.format('YYYY-MM-DD');
+                //             var end_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').endDate.format('YYYY-MM-DD');
+                //             var name = $('#excel-generated-wastespg-info').data('name');
+                //             if(from_date == '1970-01-01'){from_date = 'todos'};
+                //             return 'detalle-carga_gestor-'+name+'_'+from_date+'_' + end_date + '_' + moment().format("hh-mm-ss");
+                //         }
+                //     }
+                // ],
+                // initComplete: function () {
+                //     $.fn.dataTable.ext.search.push(
+                //       function( settings, data, dataIndex ) {
+
+                //         if ( settings.nTable.id !== 'packing-guides-table-manager' ) {
+                //           return true;
+                //         }
+
+                //         var min = moment($('#daterange-btn-waste-departure-manager').data('daterangepicker').startDate.format('YYYY-MM-DD')).toDate();
+                //         var max = moment($('#daterange-btn-waste-departure-manager').data('daterangepicker').endDate.format('YYYY-MM-DD')).toDate();
+                //         var startDate = moment(data[14]).toDate();
+
+                //         console.log(startDate)
+                //         if (min == null && max == null) { return true; }
+                //         if (min == null && startDate <= max) { return true;}
+                //         if(max == null && startDate >= min) {return true;}
+                //         if (startDate <= max && startDate >= min) { return true; }
+                //         return false;
+                //       }
+                //     );
+                //   }
+            });
+        }
+        else {
+            var packingGuideManagerTableEle = $('#packing-guides-table-manager');
+            var getDataPackingUrl = packingGuideManagerTableEle.data('url');
+            packingGuideManagerTable = packingGuideManagerTableEle.DataTable({
+                responsive: true,
+                language: DataTableEs,
+                order: [[11, 'desc']],
+                serverSide: true,
+                processing: true,
+                ajax: {
+                    "url": getDataPackingUrl,
+                    "data": function (data) {
+                        data.from_date = moment(fromDatepickerinputDeparture.datepicker('getDate')).format('YYYY-MM-DD')
+                        data.end_date = moment(toDatepickerinputDeparture.datepicker('getDate')).format('YYYY-MM-DD')
+                        data.table = "packing"
+                        data.status = $('input[name=filter-wastes-departure]:checked').val()
+                        data.group = groupFilterDeparture.val()
+                        data.class = $('select[name=waste_class_select_departure]').val()
+                        data.type = $('select[name=waste_type_select_departure]').val()
+                    }
+                },
+                columns: [
+                    { data: null, render: DataTable.render.select(), orderable: false, className: 'not-export-col' },
+                    { data: 'id', name: 'id', orderable: false, searchable: false },
+                    { data: 'first_waste.guide.id', name: 'firstWaste.guide.id' },
+                    { data: 'cod_guide', name: 'cod_guide' },
+                    { data: 'first_waste.waste.classes_wastes.group.name', name: 'first_waste.waste.classes_wastes.group.name', orderable: false, searchable: false },
+                    { data: 'first_waste.waste.name', name: 'firstWaste.waste.name' },
+                    { data: 'wastes_sum_aprox_weight', name: 'wastes_sum_aprox_weight' },
+                    { data: 'volum', name: 'volum' },
+                    { data: 'inter_management.name', name: 'interManagement.name' },
+                    { data: 'status_bool', name: 'status_bool' },
+                    { data: 'status', name: 'status' },
+                    { data: 'date_guides_departure', name: 'date_guides_departure' },
+                    { data: 'year_month', name: 'year_month', orderable: false, searchable: false },
+                    { data: 'comment', name: 'comment' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false, className: 'action' },
+                ],
+                columnDefs: [
+                    { 'visible': false, 'targets': [1, 9] }
+                ],
+                rowCallback: function (tr, rowData) {
+                    if (rowData['status_bool'] === 1) {
+                        $(tr).addClass('unselectable');
+                    }
+                },
+                rowId: 'id',
+                stateSave: true,
+                select: {
+                    style: 'multi+shift',
+                    selector: 'td:first-child',
+                    selectable: function (rowData) {
+                        return rowData['status_bool'] !== 1
+                    }
+                },
+                layout: {
+                    topStart: {
+                        buttons: [
+                            'pageLength'
+                        ]
+                    }
+                },
+                // dom: 'Bfrtlip',
+                // buttons: [
+                //     {
+                //         text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                //         extend: 'excelHtml5',
+                //         exportOptions: {
+                //             columns: ':not(.not-export-col)'
+                //         },
+                //         title:    function () {
+                //             var from_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').startDate.format('YYYY-MM-DD');
+                //             var end_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').endDate.format('YYYY-MM-DD');
+                //             var name = $('#excel-generated-wastespg-info').data('name');
+                //             if(from_date == '1970-01-01'){from_date = 'El principio'};
+                //              return 'DETALLE CARGA - GESTOR: '+name+' - DESDE: '+from_date+ ' - ' + 'HASTA: ' + end_date;
+                //         },
+                //         filename: function () {
+                //             var from_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').startDate.format('YYYY-MM-DD');
+                //             var end_date = $('#daterange-btn-waste-departure-manager').data('daterangepicker').endDate.format('YYYY-MM-DD');
+                //             var name = $('#excel-generated-wastespg-info').data('name');
+                //             if(from_date == '1970-01-01'){from_date = 'todos'};
+                //             return 'detalle-carga_gestor-'+name+'_'+from_date+'_' + end_date + '_' + moment().format("hh-mm-ss");
+                //         }
+                //     }
+                // ],
+                // initComplete: function () {
+                //     $.fn.dataTable.ext.search.push(
+                //       function( settings, data, dataIndex ) {
+
+                //         if ( settings.nTable.id !== 'packing-guides-table-manager' ) {
+                //           return true;
+                //         }
+
+                //         var min = moment($('#daterange-btn-waste-departure-manager').data('daterangepicker').startDate.format('YYYY-MM-DD')).toDate();
+                //         var max = moment($('#daterange-btn-waste-departure-manager').data('daterangepicker').endDate.format('YYYY-MM-DD')).toDate();
+                //         var startDate = moment(data[14]).toDate();
+
+                //         console.log(startDate)
+                //         if (min == null && max == null) { return true; }
+                //         if (min == null && startDate <= max) { return true;}
+                //         if(max == null && startDate >= min) {return true;}
+                //         if (startDate <= max && startDate >= min) { return true; }
+                //         return false;
+                //       }
+                //     );
+                //   }
+            });
+        }
 
         function saveSelectedPackingGuide({ table }) {
             let selected = table.select.cumulative().rows

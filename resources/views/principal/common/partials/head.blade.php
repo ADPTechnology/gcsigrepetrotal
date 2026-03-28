@@ -40,7 +40,7 @@
 
 	<link rel="stylesheet" href="{{asset('assets/common/css/fonts.css')}}">
 
-    <link href="https://cdn.datatables.net/v/bs4/jszip-3.10.1/dt-2.3.2/b-3.2.4/b-colvis-3.2.4/b-html5-3.2.4/b-print-3.2.4/fh-4.0.3/r-3.0.5/sl-3.0.1/datatables.min.css" rel="stylesheet" >
+	<link href="https://cdn.datatables.net/v/bs4/jszip-3.10.1/dt-2.3.7/b-3.2.6/b-colvis-3.2.6/b-html5-3.2.6/b-print-3.2.6/fc-5.0.5/fh-4.0.6/r-3.0.8/sl-3.1.3/datatables.min.css" rel="stylesheet" integrity="sha384-LxP3nEIZy4IjI4Hb94FAVtakspQd6a3r121ngMiC++rWsgMS7q+UB8wLzZMxgg31" crossorigin="anonymous">
 	{{-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css"> --}}
 
 	@yield('extra-head')

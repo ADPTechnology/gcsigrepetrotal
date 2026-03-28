@@ -106,7 +106,7 @@ class PackingGuideController extends Controller
 
         $managements_types = InterManagement::all();
 
-        return view('principal.viewManager.packingGuides.index', compact(
+        return view('principal.viewManager.packingGuides.externalIndex', compact(
             'session_stock_ids',
             'session_pckguides_ids',
             'companies',

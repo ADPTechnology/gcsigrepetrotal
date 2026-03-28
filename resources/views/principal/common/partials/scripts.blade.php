@@ -24,8 +24,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 
-<script src="https://cdn.datatables.net/v/bs4/jszip-3.10.1/dt-2.3.2/b-3.2.4/b-colvis-3.2.4/b-html5-3.2.4/b-print-3.2.4/fh-4.0.3/r-3.0.5/sl-3.0.1/datatables.min.js"></script>
-
+<script src="https://cdn.datatables.net/v/bs4/jszip-3.10.1/dt-2.3.7/b-3.2.6/b-colvis-3.2.6/b-html5-3.2.6/b-print-3.2.6/fc-5.0.5/fh-4.0.6/r-3.0.8/sl-3.1.3/datatables.min.js" integrity="sha384-E0w1/me6FQbK+4vUv+w0w2++Np8/8L9wxpLiHcJJ20OHLYSPKsGzgvroWgMony5c" crossorigin="anonymous"></script>
 
 <script src="{{asset('assets/principal/modules/nicescroll/jquery.nicescroll.min.js')}}"></script>
 <script src="{{asset('assets/principal/modules/moment.min.js')}}"></script>

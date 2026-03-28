@@ -389,6 +389,23 @@
                             <th>Peso (kg)</th>
                             <th>Volum (Opc)</th>
                             <th>Tipo de Manejo</th>
+
+                            <th>Fecha de Zarpe</th>
+                            <th>Barcaza</th>
+                            <th>Bultos</th>
+                            <th>Tipo de Embalaje</th>
+                            <th>Peso Kg (Transber)(Grúa)</th>
+                            <th>Tn</th>
+                            {{-- <th>Fecha de Salida de Pucallpa</th> --}}
+                            <th>Guia Green Care del Perú - Transportista</th>
+                            <th>Placa</th>
+                            <th>Guia Green Care del Perú</th>
+                            <th>Fecha de Disposición</th>
+                            <th>Comprobante Pesaje</th>
+                            <th>Peso (Kg) DD.FF</th>
+                            <th>Tn</th>
+                            <th>Empresa: Disposición Final</th>
+
                             <th>Estado de Manejo</th>
                             <th>Estado de Manejo</th>
                             <th>Fecha de Manejo</th>
