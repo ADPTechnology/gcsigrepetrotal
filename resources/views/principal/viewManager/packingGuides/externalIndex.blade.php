@@ -489,9 +489,9 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="inputGuideCode">Cod. Guía Manejo *</label>
+                                <label for="inputGuideCode">Cod. de Carga *</label>
                                 <input type="text" name="code" class="form-control"
-                                    placeholder="Ingresar guía {{ $gestion_type == 'INTERNA' ? 'interna' : '' }}" required>
+                                    placeholder="Ingresar {{ $gestion_type == 'INTERNA' ? 'guía interna' : 'código de carga' }}" required>
                             </div>
 
                             <div class="form-group col-md-4">
@@ -508,7 +508,7 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label>Fecha de Manejo {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }} *</label>
+                                <label>Fecha de {{ $gestion_type == 'INTERNA' ? 'Manejo Interno' : 'Carga' }} *</label>
                                 <div class="input-group">
                                     <input type="text" name="date" class="form-control datetimepicker" required>
                                     <div class="input-group-prepend">

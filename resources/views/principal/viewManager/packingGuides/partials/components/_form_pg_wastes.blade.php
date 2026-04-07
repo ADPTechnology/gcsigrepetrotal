@@ -136,6 +136,7 @@
     </div>
 </div>
 
+@if ($gestionType == 'EXTERNA')
 <div class="form-row">
 
     <div class="form-group col-md-6">
@@ -148,3 +149,7 @@
             value="{{ $guide->manifest_code }}">
     </div>
 </div>
+    
+@endif
+
+

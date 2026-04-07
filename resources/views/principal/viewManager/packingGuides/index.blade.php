@@ -637,18 +637,6 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
-
-                            <div class="form-group col-md-6">
-                                <label for="transport-type-select">N° de Guía {{ $gestion_type == 'INTERNA' ? 'PPC' : '' }} *</label>
-                                <input type="text" name="n-guideppc" class="form-control" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>N° de Manifiesto *</label>
-                                <input type="text" name="n-manifest" class="form-control" maxlength="10000" required>
-                            </div>
-                        </div>
-
                     </div>
 
                     <div class="modal-footer">

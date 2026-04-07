@@ -390,8 +390,8 @@ class PackingGuideController extends Controller
                 "date_departure" => $request['date'],
                 "shipping_type" => $request['transport-type'],
                 "destination" => $request['destination'],
-                "ppc_code" => $request['n-guideppc'],
-                "manifest_code" => $request['n-manifest'],
+                "ppc_code" => $request['n-guideppc'] ?? null,
+                "manifest_code" => $request['n-manifest'] ?? null,
 
                 "status" => 1,
             ]);
