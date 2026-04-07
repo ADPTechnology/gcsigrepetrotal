@@ -14,4 +14,9 @@ class ExtManagement extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function packingGuides()
+    {
+        return $this->hasMany(PackingGuide::class, 'exter_management_id');
+    }
 }

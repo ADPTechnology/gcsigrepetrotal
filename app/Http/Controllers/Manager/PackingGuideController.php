@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Manager;
 use App\Exports\Manager\{DeparturesWastesExport, InternmentWastesExport};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Company, PackingGuide, GuideWaste, InterManagement, IntermentGuide, PackageType, WasteClass, WasteType};
+use App\Models\{Company, ExtManagement, PackingGuide, GuideWaste, InterManagement, IntermentGuide, PackageType, WasteClass, WasteType};
 use App\Services\StockWastesService;
 use Auth;
 use Carbon\Carbon;
@@ -104,7 +104,7 @@ class PackingGuideController extends Controller
         $max_date_depart = $departureQuery->selectRaw('MAX(date_guides_departure) AS max_date')->first()->max_date;
         $min_date_depart = $departureQuery->selectRaw('MIN(date_guides_departure) AS min_date')->first()->min_date;
 
-        $managements_types = InterManagement::all();
+        $managements_types = ExtManagement::all();
 
         return view('principal.viewManager.packingGuides.externalIndex', compact(
             'session_stock_ids',
@@ -262,8 +262,9 @@ class PackingGuideController extends Controller
                 "cod_guide" => $request['code'],
                 "date_guides_departure" => $request['date'],
                 "volum" =>  $volum,
-                "inter_management_id" => $request['inter_management_id'],
-                "comment" => $request['comment'],
+                "inter_management_id" => $request['inter_management_id'] ?? null,
+                "exter_management_id" => $request['exter_management_id'] ?? null,
+                // "comment" => $request['comment'],
                 "status" => false
             ]);
 
@@ -387,11 +388,26 @@ class PackingGuideController extends Controller
     {
         $guides = PackingGuide::whereIn('id', $request['guides-departure-selected'])
             ->update([
+                'sailing_date' => $request->sailing_date ? Carbon::createFromFormat('d/m/Y', $request->sailing_date) : null,
+                'barge' => $request->barge,
+                'packages' => $request->packages,
+                'packaging_type' => $request->packaging_type,
+                'crane_weight_kg' => $request->crane_weight_kg,
+                'carrier_guide' => $request->carrier_guide,
+                'plate_number' => $request->plate_number,
+                'greencare_guide' => $request->greencare_guide,
+                'disposal_date' => $request->disposal_date ? Carbon::createFromFormat('d/m/Y', $request->disposal_date) : null,
+                'weighing_receipt' => $request->weighing_receipt,
+                'ddff_weight_kg' => $request->ddff_weight_kg,
+                'disposal_company' => $request->disposal_company,
+
                 "date_departure" => $request['date'],
                 "shipping_type" => $request['transport-type'],
                 "destination" => $request['destination'],
                 "ppc_code" => $request['n-guideppc'] ?? null,
                 "manifest_code" => $request['n-manifest'] ?? null,
+
+                "comment" => $request['comment'],
 
                 "status" => 1,
             ]);
@@ -441,15 +457,19 @@ class PackingGuideController extends Controller
 
         if ($guide->status == 1) {
             $guide->update([
-                'manifest_code' => $request->manifest_code
+                'manifest_code' => $request->manifest_code,
             ]);
 
             $success = true;
         }
 
+        $guide->update([
+            "comment" => $request->comment,
+        ]);
+
         if ($gestion_type == 'EXTERNA') {
             $guide->update([
-                'sailing_date' => Carbon::createFromFormat('d/m/Y', $request->sailing_date),
+                'sailing_date' => $request->sailing_date ? Carbon::createFromFormat('d/m/Y', $request->sailing_date) : null,
                 'barge' => $request->barge,
                 'packages' => $request->packages,
                 'packaging_type' => $request->packaging_type,
@@ -457,7 +477,7 @@ class PackingGuideController extends Controller
                 'carrier_guide' => $request->carrier_guide,
                 'plate_number' => $request->plate_number,
                 'greencare_guide' => $request->greencare_guide,
-                'disposal_date' => Carbon::createFromFormat('d/m/Y', $request->disposal_date),
+                'disposal_date' => $request->disposal_date ? Carbon::createFromFormat('d/m/Y', $request->disposal_date) : null,
                 'weighing_receipt' => $request->weighing_receipt,
                 'ddff_weight_kg' => $request->ddff_weight_kg,
                 'disposal_company' => $request->disposal_company,

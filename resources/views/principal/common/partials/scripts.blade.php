@@ -52,7 +52,7 @@
 <!-- Template JS File -->
 
 
-<script src="{{asset('assets/principal/js/scripts.js')}}"></script>
+<script src="{{asset('assets/principal/js/scripts.js')}}?v={{ filemtime(public_path('assets/principal/js/scripts.js')) }}"></script>
 
 <script src="{{asset('assets/principal/js/custom.js')}}?v={{ filemtime(public_path('assets/principal/js/custom.js')) }}" type="module"></script>
 

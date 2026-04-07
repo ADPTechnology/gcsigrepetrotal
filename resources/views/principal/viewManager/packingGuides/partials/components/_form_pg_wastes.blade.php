@@ -31,7 +31,7 @@
         <div class="form-group col-md-4">
             <label>Fecha de Zarpe</label>
             <div class="datepicker-range-container input-daterange input-group" id="datepicker_sailing_date">
-                <input type="text" name="sailing_date" class="form-control" style="max-width: 100%;">
+                <input type="text" name="sailing_date" class="form-control" style="max-width: 100%;" placeholder="Selecciona una fecha">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <i class="fa-solid fa-calendar-days"></i>
@@ -85,7 +85,7 @@
         <div class="form-group col-md-4">
             <label for="">Fecha de Disposición</label>
             <div class="datepicker-range-container input-daterange input-group" id="datepicker_disposal_date">
-                <input type="text" name="disposal_date" class="form-control" style="max-width: 100%;">
+                <input type="text" name="disposal_date" class="form-control" style="max-width: 100%;" placeholder="Selecciona una fecha">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <i class="fa-solid fa-calendar-days"></i>
@@ -151,5 +151,16 @@
 </div>
     
 @endif
+
+<hr>
+
+<div class="form-row">
+
+    <div class="form-group col-12">
+        <label> Comentario:</label>
+        <input type="text" name="comment" class="form-control" value="{{ $guide->comment }}">
+    </div>
+
+</div>
 
 

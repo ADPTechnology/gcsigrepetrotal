@@ -122,8 +122,9 @@ class StockWastesService
                 ->editColumn('volum', function ($packingGuide) {
                     return $packingGuide->volum ?? '-';
                 })
-                ->editColumn('inter_management.name', function ($packingGuide) {
-                    return $packingGuide->interManagement->name ?? '-';
+                ->editColumn('exter_management.name', function ($packingGuide) {
+                    return $packingGuide->interManagement ? $packingGuide->interManagement->name 
+                            : $packingGuide->exterManagement->name ?? '-';
                 })
                 ->editColumn('status_bool', function ($packingGuide) {
                     return $packingGuide->status;
@@ -498,7 +499,8 @@ class StockWastesService
                 ->with([
                     'firstWaste.guide',
                     'firstWaste.waste.classesWastes.group',
-                    'interManagement'
+                    'interManagement',
+                    'exterManagement'
                 ])
                 ->withSum('wastes', 'aprox_weight');
             // ->withSum('wastes', 'package_quantity');

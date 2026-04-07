@@ -6809,7 +6809,7 @@ $(() => {
                     { data: 'first_waste.waste.name', name: 'firstWaste.waste.name' },
                     { data: 'wastes_sum_aprox_weight', name: 'wastes_sum_aprox_weight' },
                     { data: 'volum', name: 'volum' },
-                    { data: 'inter_management.name', name: 'interManagement.name' },
+                    { data: 'exter_management.name', name: 'exterManagement.name' },
 
                     { data: 'sailing_date', name: 'sailing_date' },
                     { data: 'barge', name: 'barge' },
@@ -7236,8 +7236,11 @@ $(() => {
 
                             btn_container.html(data.html_button);
 
-                            intermentWasteManagerTable.ajax.reload()
-                            packingGuideManagerTable.ajax.reload()
+                            intermentWasteManagerTable.ajax.reload(function () {
+                                intermentWasteManagerTable.rows().deselect()
+                            }, false)
+
+                            packingGuideManagerTable.ajax.reload(null, false)
                             spinner.toggleClass('active')
                             modal.modal('hide')
 
@@ -7905,7 +7908,11 @@ $(() => {
                             button_update_container.html(data.html_button);
 
                             intermentWasteManagerTable.ajax.reload(null, false)
-                            packingGuideManagerTable.ajax.reload(null, false)
+
+                            packingGuideManagerTable.ajax.reload(function () {
+                                packingGuideManagerTable.rows().deselect()
+                            }, false)
+
                             spinner.toggleClass('active');
                             modal.modal('hide');
 
@@ -7953,9 +7960,12 @@ $(() => {
                             autoclose: true,
                             format: 'dd/mm/yyyy'
                         });
-
-                        var sailingDate = moment(guide.sailing_date).format('DD/MM/YYYY');
-                        datepickerSailingDateContainer.find('input[name=sailing_date]').datepicker('update', sailingDate);
+                        if (guide.sailing_date) {
+                            var sailingDate = moment(guide.sailing_date).format('DD/MM/YYYY');
+                            datepickerSailingDateContainer.find('input[name=sailing_date]').datepicker('update', sailingDate);
+                        } else {
+                            datepickerSailingDateContainer.datepicker('clearDates')
+                        }
 
                         let datepickerDisposalDateContainer = form.find('#datepicker_disposal_date');
 
@@ -7966,9 +7976,12 @@ $(() => {
                             autoclose: true,
                             format: 'dd/mm/yyyy'
                         });
-
-                        var disposalDate = moment(guide.disposal_date).format('DD/MM/YYYY');
-                        datepickerDisposalDateContainer.find('input[name=disposal_date]').datepicker('update', disposalDate);
+                        if (guide.disposal_date) {
+                            var disposalDate = moment(guide.disposal_date).format('DD/MM/YYYY');
+                            datepickerDisposalDateContainer.find('input[name=disposal_date]').datepicker('update', disposalDate);
+                        } else {
+                            datepickerDisposalDateContainer.datepicker('clearDates')
+                        }
 
                     }
 

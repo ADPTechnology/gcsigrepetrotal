@@ -555,6 +555,15 @@ $(function () {
                 singleDatePicker: true,
                 timePicker: true,
                 timePicker24Hour: true,
+                autoUpdateInput: false
+            });
+
+            $('.datetimepicker').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD HH:mm'));
+            });
+
+            $('.datetimepicker').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
             });
         }
         if ($(".daterange").length) {
@@ -574,6 +583,19 @@ $(function () {
                 down: 'fas fa-chevron-down'
             }
         });
+    }
+
+    if (jQuery().datepicker) {
+
+        if ($('.bt-datepicker').length) {
+            $('.bt-datepicker').datepicker({
+                language: 'es',
+                orientation: "bottom auto",
+                autoclose: true,
+                format: 'dd/mm/yyyy'
+            });
+            $('.bt-datepicker').datepicker('clearDates');
+        }
     }
 
 

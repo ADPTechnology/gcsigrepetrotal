@@ -493,7 +493,7 @@
                             <div class="form-group col-md-4">
                                 <label>Fecha de Manejo {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }} *</label>
                                 <div class="input-group">
-                                    <input type="text" name="date" class="form-control datetimepicker" required>
+                                    <input type="text" name="date" class="form-control datetimepicker" placeholder="Selecciona una fecha" required>
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa-solid fa-calendar-days"></i>
@@ -505,15 +505,6 @@
                                 <label for="inputVolume">Volum (Opc) *</label>
                                 <input type="text" pattern="^-?[0-9]+(\.[0-9]+)?|-?$" name="volume"
                                     class="form-control" placeholder="Ingresar volumen" required>
-                            </div>
-
-                        </div>
-
-                        <div class="form-row">
-
-                            <div class="form-group col-12">
-                                <label> Comentario (opcional):</label>
-                                <input type="text" name="comment" class="form-control">
                             </div>
 
                         </div>
@@ -614,7 +605,7 @@
                             <div class="form-group col-md-4">
                                 <label>Fecha de salida *</label>
                                 <div class="input-group">
-                                    <input type="text" name="date" class="form-control datetimepicker" required>
+                                    <input type="text" name="date" class="form-control datetimepicker" placeholder="Selecciona una fecha" required>
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa-solid fa-calendar-days"></i>
@@ -635,6 +626,17 @@
                                     @endif
                                 </select>
                             </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-12">
+                                <label> Comentario:</label>
+                                <input type="text" name="comment" class="form-control">
+                            </div>
+
                         </div>
 
                     </div>

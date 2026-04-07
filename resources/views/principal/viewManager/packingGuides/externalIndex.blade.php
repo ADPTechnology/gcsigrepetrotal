@@ -496,7 +496,7 @@
 
                             <div class="form-group col-md-4">
                                 <label for="management-type-select">Tipo de Manejo {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }} *</label>
-                                <select name="inter_management_id" id="management-type-select"
+                                <select name="exter_management_id" id="management-type-select"
                                     class="form-control select2" required>
                                     <option></option>
                                     @foreach ($managements_types as $type)
@@ -510,7 +510,7 @@
                             <div class="form-group col-md-4">
                                 <label>Fecha de {{ $gestion_type == 'INTERNA' ? 'Manejo Interno' : 'Carga' }} *</label>
                                 <div class="input-group">
-                                    <input type="text" name="date" class="form-control datetimepicker" required>
+                                    <input type="text" name="date" class="form-control datetimepicker" placeholder="Selecciona una fecha" required>
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa-solid fa-calendar-days"></i>
@@ -526,14 +526,14 @@
 
                         </div>
 
-                        <div class="form-row">
+                        {{-- <div class="form-row">
 
                             <div class="form-group col-12">
                                 <label> Comentario (opcional):</label>
                                 <input type="text" name="comment" class="form-control">
                             </div>
 
-                        </div>
+                        </div> --}}
 
                     </div>
 
@@ -614,6 +614,98 @@
                             </table>
                         </div>
 
+                        <hr>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-4">
+                                <label>Fecha de Zarpe</label>
+                                <div class="datepicker-range-container input-daterange input-group bt-datepicker">
+                                    <input type="text" name="sailing_date" class="form-control" style="max-width: 100%;" placeholder="Selecciona una fecha">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="">Barcaza</label>
+                                <input type="text" name="barge" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="">Bultos</label>
+                                <input type="number" name="packages" class="form-control">
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-4">
+                                <label for="">Tipo de Embalaje</label>
+                                <input type="text" name="packaging_type" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="">Peso Kg (Transber) (Grúa)</label>
+                                <input type="text" name="crane_weight_kg" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="">Guia Green Care del Perú - Transportista</label>
+                                <input type="text" name="carrier_guide" class="form-control">
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="">Placa</label>
+                                <input type="text" name="plate_number" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="">Guia Green Care del Perú</label>
+                                <input type="text" name="greencare_guide" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="">Fecha de Disposición</label>
+                                <div class="datepicker-range-container input-daterange input-group bt-datepicker">
+                                    <input type="text" name="disposal_date" class="form-control" style="max-width: 100%;" placeholder="Selecciona una fecha">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-4">
+                                <label for="">Comprobante Pesaje</label>
+                                <input type="text" name="weighing_receipt" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="">Peso (Kg) DD.FF</label>
+                                <input type="number" name="ddff_weight_kg" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="">Empresa: Disposición Final</label>
+                                <input type="text" name="disposal_company" class="form-control">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="transport-type-select">Tipo de transporte *</label>
@@ -631,7 +723,7 @@
                             <div class="form-group col-md-4">
                                 <label>Fecha de salida *</label>
                                 <div class="input-group">
-                                    <input type="text" name="date" class="form-control datetimepicker" required>
+                                    <input type="text" name="date" class="form-control datetimepicker" placeholder="Selecciona una fecha" required>
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa-solid fa-calendar-days"></i>
@@ -664,6 +756,17 @@
                                 <label>N° de Manifiesto *</label>
                                 <input type="text" name="n-manifest" class="form-control" maxlength="10000" required>
                             </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-12">
+                                <label> Comentario:</label>
+                                <input type="text" name="comment" class="form-control">
+                            </div>
+
                         </div>
 
                     </div>

@@ -27,6 +27,11 @@ class PackingGuide extends Model
         return $this->belongsTo(InterManagement::class, 'inter_management_id');
     }
 
+    public function exterManagement()
+    {
+        return $this->belongsTo(ExtManagement::class, 'exter_management_id');
+    }
+
     // public function departure()
     // {
     //     return $this->belongsTo(Departure::class, 'id_departure');
