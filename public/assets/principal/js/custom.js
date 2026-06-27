@@ -131,8 +131,6 @@ $(() => {
                     var value_id = $(this).val();
                     var url = $(this).data('url');
 
-                    console.log(url)
-
                     $.ajax({
                         type: 'GET',
                         url: url,
