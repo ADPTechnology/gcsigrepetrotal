@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="createIntermentGuideModalLabel">
                     <div class="section-title mt-0">
-                        <i class="fa-solid fa-square-plus"></i>&nbsp;
+                        <i class="ti ti-square-rounded-plus-filled"></i>&nbsp;
                         Agregar Internamiento
                     </div>
                 </h5>
@@ -15,7 +15,7 @@
             </div>
 
             <form action="{{ route('guides.store') }}" method="POST" id="registerGuideForm"
-            data-validate="{{ route('validate.GuideCode') }}">
+                data-validate="{{ route('validate.GuideCode') }}">
                 @csrf
                 <div class="modal-body" id="content-register-intguide">
                 </div>
@@ -23,7 +23,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Cerrar</button>
                     <button type="submit" id="button-save-guide" class="btn btn-primary btn-save">
-                        <i class="fa-solid fa-floppy-disk"></i> &nbsp;
+                        <i class="ti ti-device-floppy"></i> &nbsp;
                         Guardar
                         <i class="fa-solid fa-spinner fa-spin loadSpinner ms-1"></i>
                     </button>

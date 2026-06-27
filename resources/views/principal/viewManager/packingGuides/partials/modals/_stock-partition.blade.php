@@ -37,12 +37,13 @@
                             <label>Número de particiones: </label>
                         </div>
                         <div class="form-group col-lg-4 col-md-5 col-10">
-                            <input type="number" class="form-control" name="partitions_number"
-                                step="1" min="1" required>
+                            <input type="number" class="form-control" name="partitions_number" step="1"
+                                min="1" required>
                         </div>
 
                         <div class="form-group col-lg-1 col-2">
-                            <span class="form-control btn btn-primary
+                            <span
+                                class="form-control btn btn-primary
                             btn-add-partitions
                             btn-valid-load-partitions">
                                 <i class="fa-solid fa-check"></i>
@@ -62,7 +63,8 @@
                                     </span>
                                     :
                                 </div>
-                                <input type="number" class="form-control text-right no-arrows" name="partitions_qtty[]" min="0" step='0.1' required>
+                                <input type="number" class="form-control text-right no-arrows" name="partitions_qtty[]"
+                                    min="0" step='0.1' required>
                                 <div class="font-weight-bold">
                                     Kg.
                                 </div>
@@ -70,7 +72,7 @@
 
                             <div class="form-group col-lg-1 col-2">
                                 <span class="form-control btn btn-danger btn-remove-partition">
-                                    <i class="fa-solid fa-trash-can"></i>
+                                    <i class="ti ti-trash"></i>
                                 </span>
                             </div>
                         </div>

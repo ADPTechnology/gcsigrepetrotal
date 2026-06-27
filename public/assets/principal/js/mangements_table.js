@@ -24,7 +24,7 @@ $(() => {
             dom: 'Bfrtlip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: ':not(.not-export-col)',
@@ -95,7 +95,7 @@ $(() => {
                         <button type="button"\
                                 class="me-3 edit btn btn-primary btn-sm btn-update-int-management\
                                 "> \
-                                <i class="fa-solid fa-floppy-disk"></i> \
+                                <i class="ti ti-device-floppy"></i> \
                         </button> \
                         <button id="resetIntManagementEdit"\
                                 class="ms-3 btn btn-danger btn-sm"> \
@@ -268,13 +268,13 @@ $(() => {
                     },
                     columns: [
                         { data: 'id', name: 'id' },
-                        { data: 'name', name: 'name',  className: "columnType"  },
+                        { data: 'name', name: 'name', className: "columnType" },
                         { data: 'action', name: 'action', orderable: false, searchable: false, className: 'btnWasteType not-export-col' },
                     ],
                     dom: 'Bfrtlip',
                     buttons: [
                         {
-                            text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                            text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                             extend: 'excelHtml5',
                             exportOptions: {
                                 columns: ':not(.not-export-col)',
@@ -346,7 +346,7 @@ $(() => {
                         <button type="button"\
                                 class="me-3 edit btn btn-primary btn-sm btn-update-ext-management\
                                 "> \
-                                <i class="fa-solid fa-floppy-disk"></i> \
+                                <i class="ti ti-device-floppy"></i> \
                         </button> \
                         <button id="resetExtManagementEdit"\
                                 class="ms-3 btn btn-danger btn-sm"> \
@@ -519,13 +519,13 @@ $(() => {
                     },
                     columns: [
                         { data: 'id', name: 'id' },
-                        { data: 'name', name: 'name',  className: "columnType"  },
+                        { data: 'name', name: 'name', className: "columnType" },
                         { data: 'action', name: 'action', orderable: false, searchable: false, className: 'btnWasteType not-export-col' },
                     ],
                     dom: 'Bfrtlip',
                     buttons: [
                         {
-                            text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                            text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                             extend: 'excelHtml5',
                             exportOptions: {
                                 columns: ':not(.not-export-col)',
@@ -597,7 +597,7 @@ $(() => {
                         <button type="button"\
                                 class="me-3 edit btn btn-primary btn-sm btn-update-final-dips\
                                 "> \
-                                <i class="fa-solid fa-floppy-disk"></i> \
+                                <i class="ti ti-device-floppy"></i> \
                         </button> \
                         <button id="resetFinalDispEdit"\
                                 class="ms-3 btn btn-danger btn-sm"> \
@@ -768,13 +768,13 @@ $(() => {
                     },
                     columns: [
                         { data: 'id', name: 'id' },
-                        { data: 'name', name: 'name',  className: "columnType"  },
+                        { data: 'name', name: 'name', className: "columnType" },
                         { data: 'action', name: 'action', orderable: false, searchable: false, className: 'btnWasteType not-export-col' },
                     ],
                     dom: 'Bfrtlip',
                     buttons: [
                         {
-                            text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                            text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                             extend: 'excelHtml5',
                             exportOptions: {
                                 columns: ':not(.not-export-col)',
@@ -846,7 +846,7 @@ $(() => {
                         <button type="button"\
                                 class="me-3 edit btn btn-primary btn-sm btn-update-disp-place\
                                 "> \
-                                <i class="fa-solid fa-floppy-disk"></i> \
+                                <i class="ti ti-device-floppy"></i> \
                         </button> \
                         <button id="resetDispPlaceEdit"\
                                 class="ms-3 btn btn-danger btn-sm"> \

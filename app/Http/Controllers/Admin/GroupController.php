@@ -20,12 +20,12 @@ class GroupController extends Controller
                     $btn = '<button data-id="' .
                         $group->id . '" data-url="' . route('groups.update', $group) . '"
                                 data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                                editGroup"><i class="fa-solid fa-pen-to-square"></i></button>';
+                                editGroup"><i class="ti ti-edit"></i></button>';
 
                     $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' .
                         $group->id . '" data-original-title="delete"
                                 data-url="' . route('groups.delete', $group) . '" class="ms-3 edit btn btn-danger btn-sm
-                                deleteGroup"><i class="fa-solid fa-trash-can"></i></a>';
+                                deleteGroup"><i class="ti ti-trash"></i></a>';
 
                     return $btn;
                 })

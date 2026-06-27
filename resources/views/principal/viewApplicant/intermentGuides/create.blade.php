@@ -112,7 +112,7 @@
                             <div class="form-group ms-3 save-btn-classWaste-guide-container">
                                 <button class="btn btn-primary" id="btn-save-classWaste-guide"
                                     data-url="{{ route('guides.getDataWarehouse') }}">
-                                    <i class="fa-solid fa-square-plus"></i> &nbsp;
+                                    <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                                     Agregar
                                 </button>
                             </div>
@@ -231,7 +231,7 @@
 
                         <div class="mt-4 button-save-guide-container">
                             <button type="submit" id="button-save-guide" class="btn btn-primary">
-                                <i class="fa-solid fa-floppy-disk"></i> &nbsp;
+                                <i class="ti ti-device-floppy"></i> &nbsp;
                                 Guardar
                                 <i class="fa-solid fa-spinner fa-spin loadSpinner ms-1"></i>
                             </button>

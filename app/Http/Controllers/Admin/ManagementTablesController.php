@@ -21,11 +21,11 @@ class ManagementTablesController extends Controller
                         $btn = '<button data-id="' .
                             $item->id . '" data-url="' . route('interManagement.update', ["intManagement" => $item]) . '"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editInterManagment"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editInterManagment"><i class="ti ti-edit"></i></button>';
                         $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' .
                             $item->id . '" data-original-title="delete"
                             data-url="' . route('interManagement.delete', ["intManagement" => $item]) . '" class="ms-3 edit btn btn-danger btn-sm
-                            deleteInterManagment"><i class="fa-solid fa-trash-can"></i></a>';
+                            deleteInterManagment"><i class="ti ti-trash"></i></a>';
                         return $btn;
                     })
                     ->rawColumns(['action'])
@@ -38,11 +38,11 @@ class ManagementTablesController extends Controller
                         $btn = '<button data-id="' .
                             $item->id . '" data-url="' . route('extManagement.update', ["extManagement" => $item]) . '"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editExtManagment"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editExtManagment"><i class="ti ti-edit"></i></button>';
                         $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' .
                             $item->id . '" data-original-title="delete"
                             data-url="' . route('extManagement.delete', ["extManagement" => $item]) . '" class="ms-3 edit btn btn-danger btn-sm
-                            deleteExtManagment"><i class="fa-solid fa-trash-can"></i></a>';
+                            deleteExtManagment"><i class="ti ti-trash"></i></a>';
                         return $btn;
                     })
                     ->rawColumns(['action'])
@@ -55,11 +55,11 @@ class ManagementTablesController extends Controller
                         $btn = '<button data-id="' .
                             $item->id . '" data-url="' . route('extDisposition.update', ["extDisposition" => $item]) . '"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editExtDisposition"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editExtDisposition"><i class="ti ti-edit"></i></button>';
                         $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' .
                             $item->id . '" data-original-title="delete"
                             data-url="' . route('extDisposition.delete', ["extDisposition" => $item]) . '" class="ms-3 edit btn btn-danger btn-sm
-                            deleteExtDisposition"><i class="fa-solid fa-trash-can"></i></a>';
+                            deleteExtDisposition"><i class="ti ti-trash"></i></a>';
                         return $btn;
                     })
                     ->rawColumns(['action'])
@@ -72,11 +72,11 @@ class ManagementTablesController extends Controller
                         $btn = '<button data-id="' .
                             $item->id . '" data-url="' . route('dispPlace.update', ["dispPlace" => $item]) . '"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editDisPlace"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editDisPlace"><i class="ti ti-edit"></i></button>';
                         $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' .
                             $item->id . '" data-original-title="delete"
                             data-url="' . route('dispPlace.delete', ["dispPlace" => $item]) . '" class="ms-3 edit btn btn-danger btn-sm
-                            deleteDisPlace"><i class="fa-solid fa-trash-can"></i></a>';
+                            deleteDisPlace"><i class="ti ti-trash"></i></a>';
                         return $btn;
                     })
                     ->rawColumns(['action'])

@@ -19,39 +19,39 @@
                     <li class="nav-item">
                         <a class="nav-link active" id="warehouses-tab" data-toggle="tab" href="#warehouses" role="tab"
                             aria-controls="warehouses" aria-selected="true">
-                            <i class="fa-solid fa-dumpster"></i> &nbsp;
+                            <i class="ti ti-building-warehouse"></i> &nbsp;
                             General
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="lots-tab" data-toggle="tab" href="#lots" role="tab"
                             aria-controls="lots" aria-selected="false">
-                            <i class="fa-solid fa-map"></i> &nbsp; Lote</a>
+                            <i class="ti ti-map"></i> &nbsp; Lote</a>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" id="stages-tab" data-toggle="tab" href="#stages" role="tab"
                             aria-controls="stages" aria-selected="false">
-                            <i class="fa-solid fa-map"></i> &nbsp; Etapa</a>
+                            <i class="ti ti-map"></i> &nbsp; Etapa</a>
                     </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" id="locations-tab" data-toggle="tab" href="#locations" role="tab"
                             aria-controls="locations" aria-selected="false">
-                            <i class="fa-solid fa-map-location-dot"></i> &nbsp; Locación</a>
+                            <i class="ti ti-map-pin"></i> &nbsp; Locación</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="projects-tab" data-toggle="tab" href="#projects" role="tab"
                             aria-controls="projects" aria-selected="false">
-                            <i class="fa-solid fa-building"></i> &nbsp; Área</a>
+                            <i class="ti ti-building"></i> &nbsp; Área</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="companies-tab" data-toggle="tab" href="#companies" role="tab"
                             aria-controls="companies" aria-selected="false">
-                            <i class="fa-solid fa-city"></i> &nbsp; Empresa</a>
+                            <i class="ti ti-building-factory-2"></i> &nbsp; Empresa</a>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" id="fronts-tab" data-toggle="tab" href="#fronts" role="tab"
                             aria-controls="fronts" aria-selected="false">
-                            <i class="fa-solid fa-city"></i> &nbsp; Frente</a>
+                            <i class="ti ti-building-factory-2"></i> &nbsp; Frente</a>
                     </li> --}}
                 </ul>
 
@@ -63,7 +63,7 @@
                         <div class="mb-4">
                             <button id="registerWarehouseBtn" class="btn btn-primary" data-toggle="modal"
                                 data-url="{{ route('warehouses.create') }}">
-                                <i class="fa-solid fa-square-plus"></i> &nbsp; Registrar
+                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; Registrar
                                 <i class="fa-solid fa-spinner fa-spin loadSpinner ms-1"></i>
                             </button>
                         </div>
@@ -92,7 +92,7 @@
                         <div class="mb-4">
                             <button class="btn btn-primary" data-text="Registrar Lote" data-placeholder="Nombre de lote"
                                 data-url="{{ route('lots.store') }}" data-toggle="modal" data-target="#RegisterLotsModal">
-                                <i class="fa-solid fa-square-plus"></i> &nbsp; Registrar
+                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; Registrar
                             </button>
                         </div>
 
@@ -112,7 +112,7 @@
                             <button class="btn btn-primary" data-text="Registrar Etapa"
                                 data-placeholder="Nombre de etapa" data-url="{{ route('stages.store') }}"
                                 data-toggle="modal" data-target="#RegisterStagesModal">
-                                <i class="fa-solid fa-square-plus"></i> &nbsp; Registrar
+                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; Registrar
                             </button>
                         </div>
                         <table id="stage-table" class="table table-hover" data-url="{{ route('warehouses.index') }}">
@@ -131,7 +131,7 @@
                             <button class="btn btn-primary" data-text="Registrar locación"
                                 data-placeholder="Nombre de locación" data-url="{{ route('locations.store') }}"
                                 data-toggle="modal" data-target="#RegisterLocationsModal">
-                                <i class="fa-solid fa-square-plus"></i> &nbsp; Registrar
+                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; Registrar
                             </button>
                         </div>
                         <table id="location-table" class="table table-hover" data-url="{{ route('warehouses.index') }}">
@@ -150,7 +150,7 @@
                             <button class="btn btn-primary" data-text="Registrar área de proyecto"
                                 data-placeholder="Nombre de área de proyecto" data-url="{{ route('projects.store') }}"
                                 data-toggle="modal" data-target="#RegisterProjectsModal">
-                                <i class="fa-solid fa-square-plus"></i> &nbsp; Registrar
+                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; Registrar
                             </button>
                         </div>
                         <table id="project-table" class="table table-hover" data-url="{{ route('warehouses.index') }}">
@@ -169,7 +169,7 @@
                             <button class="btn btn-primary" data-text="Registrar empresa"
                                 data-placeholder="Nombre de empresa" data-url="{{ route('companies.store') }}"
                                 data-toggle="modal" data-target="#RegisterCompaniesModal">
-                                <i class="fa-solid fa-square-plus"></i> &nbsp; Registrar
+                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; Registrar
                             </button>
                         </div>
                         <table id="company-table" class="table table-hover" data-url="{{ route('warehouses.index') }}">
@@ -189,7 +189,7 @@
                             <button class="btn btn-primary" data-text="Registrar frente"
                                 data-placeholder="Nombre de frente" data-url="{{ route('fronts.store') }}"
                                 data-toggle="modal" data-target="#RegisterFrontsModal">
-                                <i class="fa-solid fa-square-plus"></i> &nbsp; Registrar
+                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; Registrar
                             </button>
                         </div>
                         <table id="front-table" class="table table-hover" data-url="{{ route('warehouses.index') }}">
@@ -223,7 +223,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="RegisterWarehouseTitle">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             <span id="txt-context-element">
                                 Registrar Punto verde
                             </span>
@@ -354,7 +354,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="EditWarehouseTitle">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             <span id="txt-context-element">
                                 Editar Punto verde
                             </span>
@@ -487,7 +487,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="RegisterLotsTitle">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             <span id="txt-context-element">
 
                             </span>
@@ -531,7 +531,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="EditLotModalLabel">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             Editar Lote
                         </div>
                     </h5>
@@ -577,7 +577,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="RegisterStagesTitle">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             <span id="txt-context-element">
 
                             </span>
@@ -621,7 +621,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="EditStageModalLabel">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             Editar etapa
                         </div>
                     </h5>
@@ -666,7 +666,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="RegisterLocationTitle">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             <span id="txt-context-element">
 
                             </span>
@@ -711,7 +711,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="EditLocationModalLabel">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             Editar locación
                         </div>
                     </h5>
@@ -757,7 +757,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="RegisterProjectTitle">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             <span id="txt-context-element">
 
                             </span>
@@ -801,7 +801,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="EditProjectModalLabel">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             Editar área de proyecto
                         </div>
                     </h5>
@@ -846,7 +846,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="RegisterCompanyTitle">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             <span id="txt-context-element">
 
                             </span>
@@ -900,7 +900,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="EditCompanyModalLabel">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             Editar empresa
                         </div>
                     </h5>
@@ -955,7 +955,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="RegisterFrontTitle">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             <span id="txt-context-element">
 
                             </span>
@@ -999,7 +999,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="EditFrontModalLabel">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-square-plus"></i> &nbsp;
+                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                             Editar frente
                         </div>
                     </h5>

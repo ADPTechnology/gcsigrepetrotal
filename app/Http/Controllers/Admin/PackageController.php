@@ -23,15 +23,15 @@ class PackageController extends Controller
             $allTypes = DataTables::of($packageTypes)
                     ->addColumn('action', function($type){
                         $btn = '<button data-id="'.
-                                $type->id.'" data-url="'.route('packageType.update', $type).'" 
+                                $type->id.'" data-url="'.route('packageType.update', $type).'"
                                 data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                                editType"><i class="fa-solid fa-pen-to-square"></i></button>';
+                                editType"><i class="ti ti-edit"></i></button>';
 
                         $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.
                                 $type->id.'" data-original-title="delete"
                                 data-url="'.route('packageType.delete', $type).'" class="ms-3 edit btn btn-danger btn-sm
-                                deleteType"><i class="fa-solid fa-trash-can"></i></a>';
-                        
+                                deleteType"><i class="ti ti-trash"></i></a>';
+
                         return $btn;
                     })
                     ->rawColumns(['action'])
@@ -83,7 +83,7 @@ class PackageController extends Controller
         ]);
     }
 
- 
+
 
 
 

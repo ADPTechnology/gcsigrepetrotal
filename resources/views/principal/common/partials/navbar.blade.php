@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg main-navbar">
 
     <ul class="navbar-nav d-flex flex-grow-1 flex-nowrap">
-        <li class="d-flex align-items-center"><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+        <li class="d-flex align-items-center"><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="ti ti-menu-2"></i></a></li>
 
         <div class="company-info-welcome text-nowrap">
             <span class="welcome text-truncate" style="text-overflow: ellipsis">
@@ -17,7 +17,7 @@
 
         <li class="dropdown dropdown-list-toggle">
             <a href="#" data-toggle="dropdown" class="nav-link nav-link-lg d-flex" style="gap: .6em;">
-                <i class="fa-solid fa-caret-down fa-2xs"></i>
+                <i class="ti ti-caret-down-filled"></i>
                 <img style="width: 80%; height: fit-content;"
                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADMElEQVR4nO2ZSWgUQRSGW4nRIG7RXBTEQ3BLRBEvSgQRheQiKBhEvLgcvKgHiaIiGIUkLuCKuIsH8eBBBLeYiwaDiIIhejEKBp14CKLRuCTG5JNn3kBn7Fl6pqq7kfwwzExT9b/3d9V7VfXKcYbwHwMoBjYCF4CHwDvgE/AbaAGKnKgCGA1sAZ6THtETAwwHNgMf8YdeIAY8Aa4BG4ApYYkoAuoxiwZgQdBx0IYd9AOngRG2RUzWALaNB8AEWyLygMcEh3sShzaEVBE89tlIsR0hCOk2mtGAnYSHY6ZEDAsowJPhK5BvQsg8wscSE0J2G3bqBfDdZ586E0JuGhRxFhgFVAA/ffS7bUJIswEBTcDiBN4yoD3D/i0mhHzOIXVeTTW/gfHA5Qy4Ok0I8bNPagWuAKuBsT5slOlKnhS2hLTpwUmc3gUsk7drwNZcWTcCE5IzaXqbvcAOYKJJ0jCEbLdBGoaQSfot2S4OyXB1Wa/yYQhJE5+1jl8ABREU0p4N0YEICiEbIinfCDYBh4DXQKMVry0L6dK+BVY8DVDIe+07zYqnAQq5rn3PyQHLirep7Xshlg1RKfBLCRqBvcBIK1572/dCTbZk5cAXF9FK4x4nt/3IZVfKrDU5HXtlJwtUK2G9UW+9awSrXP//wnSBLqbb9WJjxP/aWQ70AFuBQtXRZdpIfFSOGCUebOOO2jgBLNTfL23Ufnu0RFNolHyAf5aOuHxmAmfiohwLxi4qebUF7vPKfQOYrwWKPmC2Y+mt9emV2rgU7fKBg8AHV+bp0Gd5Hu1L9EAl13TrNB4Fp4yLcBmVI67gaIo2cnYg0604cDce2K61q8Hq9giYqsMub7A0SZtMSz1e6AdOSg3MmgiXo/vVaFOSqZKNkFYVUGJdQEIMNCcracr0STe19EL1vj57ZqRYnUP5plunwhoPobUJIzMo2IHjrriYEYoIl8OVmsUkXip9bEPiyUACu8KJAoBt6pQIOpxqh6xX27dcQb3eiRKAtcA3dfAtsEen3hh1fpFOpU5tI98rnCgCmAM8zSA7yfZ8uhNlMDD/y3XRfAP80IudV8AlYGnYPg7BCQB/ACP5Pjrzc9jVAAAAAElFTkSuQmCC">
             </a>
@@ -25,7 +25,7 @@
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
 
                 <div class="dropdown-header">
-                    <i class="fa-solid fa-phone me-2"></i>
+                    <i class="ti ti-phone-filled me-2"></i>
                     Números de contacto
                 </div>
                 <div class="dropdown-list-content dropdown-list-message">
@@ -45,7 +45,7 @@
                             <div>
                                 <a href="https://wa.me/51942416280" target="_BLANK"
                                     style="font-size: 2em; color: #25d366;">
-                                    <i class="fa-brands fa-whatsapp"></i>
+                                    <i class="ti ti-brand-whatsapp"></i>
                                 </a>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                             <div>
                                 <a href="https://wa.me/51956986426" target="_BLANK"
                                     style="font-size: 2em; color: #25d366;">
-                                    <i class="fa-brands fa-whatsapp"></i>
+                                    <i class="ti ti-brand-whatsapp"></i>
                                 </a>
                             </div>
                         </div>
@@ -82,20 +82,20 @@
             <li class="dropdown ms-auto me-2 user-info-content">
                 <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                     <div class="d-sm-none d-lg-inline-block inner-info-container">
-                        <i class="fa-solid fa-user"></i> &nbsp;&nbsp;
+                        <i class="ti ti-user"></i> &nbsp;&nbsp;
                         Hola, {{ Auth::user()->name }}
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right mt-4">
                     <a href="{{ route('profile.index') }}" class="dropdown-item has-icon text-primary">
-                        <i class="fa-regular fa-user"></i>
+                        <i class="ti ti-user"></i>
                         &nbsp;
                         Perfil
                     </a>
                     <a href="" class="dropdown-item has-icon text-danger"
                         onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                        <i class="ti ti-logout"></i> Cerrar sesión
                     </a>
                 </div>
             </li>

@@ -78,13 +78,13 @@ class StockWastesService
                             data-url="' . route('admin.guidewaste.update', $waste) . '"
                             data-send="' . route('admin.guidewaste.edit', $waste) . '"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editWaste"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editWaste"><i class="ti ti-edit"></i></button>';
 
                     $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' .
                         $waste->id . '" data-original-title="delete"
                         data-url="' . route('admin.guidewaste.delete', $waste) . '"
                         class="ms-3 edit btn btn-danger btn-sm
-                        deleteWaste"><i class="fa-solid fa-trash-can"></i></a>';
+                        deleteWaste"><i class="ti ti-trash"></i></a>';
                     // }
 
 
@@ -123,7 +123,7 @@ class StockWastesService
                     return $packingGuide->volum ?? '-';
                 })
                 ->editColumn('exter_management.name', function ($packingGuide) {
-                    return $packingGuide->interManagement ? $packingGuide->interManagement->name 
+                    return $packingGuide->interManagement ? $packingGuide->interManagement->name
                             : $packingGuide->exterManagement->name ?? '-';
                 })
                 ->editColumn('status_bool', function ($packingGuide) {
@@ -140,7 +140,7 @@ class StockWastesService
                     }
                     return $status;
                 })
-                
+
                 ->editColumn('sailing_date', function ($packingGuide) {
                     return $packingGuide->sailing_date ? getOnlyDate($packingGuide->sailing_date) : '-';
                 })
@@ -172,7 +172,7 @@ class StockWastesService
                                         data-send="' . route('editPackingGuideDeparture.manager', ["guide" => $packingGuide, "gestionType" => $gestion_type]) . '"
                                         data-url="' . route('edit.updatePGdeparture.manager', ["guide" => $packingGuide, "gestionType" => $gestion_type]) . '"
                                         data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                                        edit_packing_guide"><i class="fa-solid fa-pen-to-square"></i>
+                                        edit_packing_guide"><i class="ti ti-edit"></i>
                                     </button>';
                     }
 
@@ -249,7 +249,7 @@ class StockWastesService
                                         data-send="' . route('editPackingGuideDeparture.manager', ["guide" => $packingGuide, "gestionType" => $gestion_type]) . '"
                                         data-url="' . route('edit.updatePGdeparture.manager', ["guide" => $packingGuide, "gestionType" => $gestion_type]) . '"
                                         data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                                        edit_packing_guide"><i class="fa-solid fa-pen-to-square"></i>
+                                        edit_packing_guide"><i class="ti ti-edit"></i>
                                     </button>';
                     }
 
@@ -409,7 +409,6 @@ class StockWastesService
             )
                 ->has('guide')
                 ->where('gestion_type', $request->input('gestion_type', 'INTERNA'))
-
                 // ->whereHas('guide', function ($query) {
                 //     $query->where('stat_approved', 1)
                 //         ->where('stat_recieved', 1)

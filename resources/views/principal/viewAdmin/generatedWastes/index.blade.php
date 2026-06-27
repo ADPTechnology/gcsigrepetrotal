@@ -18,7 +18,8 @@
                     data-url="{{ route('loadGuidesSelected.manager') }}">
 
                     <button id="btn-register-intguide-modal" class="btn btn-primary" data-url="{{ route('guides.create') }}">
-                        <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Agregar Internamiento </span>
+                        <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Agregar Internamiento
+                        </span>
                         <i class="fa-solid fa-spinner fa-spin loadSpinner"></i>
                     </button>
 
@@ -136,7 +137,7 @@
 
                         <div class="mb-4">
                             <button type="submit" class="btn btn-success" id="btn-export-profile-surveys">
-                                <i class="fa-solid fa-download"></i> &nbsp; Descargar Excel
+                                <i class="ti ti-download"></i> &nbsp; Descargar Excel
                                 <i class="fa-solid fa-spinner fa-spin loadSpinner ms-1"></i>
                             </button>
                         </div>
@@ -187,7 +188,6 @@
 @endsection
 
 @section('modals')
-
     @include('principal.viewManager.packingGuides.partials.modals._show-internment-guide')
 
     @include('principal.viewAdmin.generatedWastes.partials.modals._edit')

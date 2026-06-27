@@ -146,7 +146,8 @@
                             <label class="form-label">Residuo</label>
 
                             <div class="select-disabled container-select">
-                                <select name="waste_type_select" class="form-control select2" id="waste_stock_type_select">
+                                <select name="waste_type_select" class="form-control select2"
+                                    id="waste_stock_type_select">
                                     <option></option>
                                 </select>
                             </div>
@@ -227,7 +228,7 @@
 
                     {{-- <div class="mb-4">
                         <button type="submit" class="btn btn-success" id="btn-export-internment-wastes-report">
-                            <i class="fa-solid fa-download"></i> &nbsp; Descargar Excel
+                            <i class="ti ti-download"></i> &nbsp; Descargar Excel
                             <i class="fa-solid fa-spinner fa-spin loadSpinner ms-1"></i>
                         </button>
                     </div> --}}
@@ -367,7 +368,7 @@
 
                     {{-- <div class="mb-4">
                         <button type="submit" class="btn btn-success" id="btn-export-departures-wastes-report">
-                            <i class="fa-solid fa-download"></i> &nbsp; Descargar Excel
+                            <i class="ti ti-download"></i> &nbsp; Descargar Excel
                             <i class="fa-solid fa-spinner fa-spin loadSpinner ms-1"></i>
                         </button>
                     </div> --}}
@@ -414,7 +415,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="RegisterPackingGuideModalTitle">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-layer-group"></i> &nbsp;
+                            <i class="ti ti-stack-2"></i> &nbsp;
                             <span id="txt-context-element">
                                 Realizar Grupo {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }}
                             </span>
@@ -474,11 +475,13 @@
                             <div class="form-group col-md-4">
                                 <label for="inputGuideCode">Cod. Guía Manejo *</label>
                                 <input type="text" name="code" class="form-control"
-                                    placeholder="Ingresar guía {{ $gestion_type == 'INTERNA' ? 'interna' : '' }}" required>
+                                    placeholder="Ingresar guía {{ $gestion_type == 'INTERNA' ? 'interna' : '' }}"
+                                    required>
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="management-type-select">Tipo de Manejo {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }} *</label>
+                                <label for="management-type-select">Tipo de Manejo
+                                    {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }} *</label>
                                 <select name="inter_management_id" id="management-type-select"
                                     class="form-control select2" required>
                                     <option></option>
@@ -493,7 +496,8 @@
                             <div class="form-group col-md-4">
                                 <label>Fecha de Manejo {{ $gestion_type == 'INTERNA' ? 'Interno' : 'Externo' }} *</label>
                                 <div class="input-group">
-                                    <input type="text" name="date" class="form-control datetimepicker" placeholder="Selecciona una fecha" required>
+                                    <input type="text" name="date" class="form-control datetimepicker"
+                                        placeholder="Selecciona una fecha" required>
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa-solid fa-calendar-days"></i>
@@ -605,7 +609,8 @@
                             <div class="form-group col-md-4">
                                 <label>Fecha de salida *</label>
                                 <div class="input-group">
-                                    <input type="text" name="date" class="form-control datetimepicker" placeholder="Selecciona una fecha" required>
+                                    <input type="text" name="date" class="form-control datetimepicker"
+                                        placeholder="Selecciona una fecha" required>
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa-solid fa-calendar-days"></i>

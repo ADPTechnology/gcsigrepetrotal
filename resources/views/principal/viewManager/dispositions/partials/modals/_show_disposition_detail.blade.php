@@ -6,7 +6,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="showDispositionDetailModalTitle">
                     <div class="section-title mt-0">
-                        <i class="fa-solid fa-layer-group"></i> &nbsp;
+                        <i class="ti ti-stack-2"></i> &nbsp;
                         <span id="txt-context-element">
                             Detalle de Carga
                         </span>

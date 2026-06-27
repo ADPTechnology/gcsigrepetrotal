@@ -51,12 +51,12 @@ class UserController extends Controller
                         $user->id . '" data-url="' . route('users.update', $user) . '"
                             data-send="' . route('users.edit', $user) . '"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editUser"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editUser"><i class="ti ti-edit"></i></button>';
                     if (Auth::user()->id != $user->id) {
                         $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' .
                             $user->id . '" data-original-title="delete"
                         data-url="' . route('users.delete', $user) . '" class="ms-3 edit btn btn-danger btn-sm
-                        deleteUser"><i class="fa-solid fa-trash-can"></i></a>';
+                        deleteUser"><i class="ti ti-trash"></i></a>';
                     }
                     return $btn;
                 })
@@ -130,7 +130,8 @@ class UserController extends Controller
         }
 
         // $company = in_array($request['id_role'], [2, 3]) ? $request['id_user_company'] : null;
-        $ownerCompany = in_array($request['id_role'], [2, 3]) ? null : $request['id_user_company'];
+        // $ownerCompany = in_array($request['id_role'], [2, 3]) ? null : $request['id_user_company'];
+        $ownerCompany = $request['id_user_company'];
 
         $user = User::create(
             [
@@ -148,9 +149,9 @@ class UserController extends Controller
             ]
         );
 
-        if (in_array($request['id_role'], [2, 3])) {
-            $user->companies()->sync($request['id_user_company']);
-        }
+        // if (in_array($request['id_role'], [2, 3])) {
+        //     $user->companies()->sync($request['id_user_company']);
+        // }
 
         if ($request->has('id_approvings')) {
             $user->approvings()->sync($request['id_approvings']);

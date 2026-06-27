@@ -83,7 +83,7 @@ $(() => {
             dom: 'Bfrtlip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: ':not(.not-export-col)',
@@ -130,6 +130,8 @@ $(() => {
                 if ($('#RegisterUserModal').hasClass('show')) {
                     var value_id = $(this).val();
                     var url = $(this).data('url');
+
+                    console.log(url)
 
                     $.ajax({
                         type: 'GET',
@@ -770,7 +772,7 @@ $(() => {
             dom: 'Bfrtlip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: ':not(.not-export-col)'
@@ -1263,7 +1265,7 @@ $(() => {
                     dom: 'Bfrtlip',
                     buttons: [
                         {
-                            text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                            text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                             extend: 'excelHtml5',
                             exportOptions: {
                                 columns: ':not(.not-export-col)'
@@ -1481,7 +1483,7 @@ $(() => {
                     dom: 'Bfrtlip',
                     buttons: [
                         {
-                            text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                            text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                             extend: 'excelHtml5',
                             exportOptions: {
                                 columns: ':not(.not-export-col)'
@@ -1699,7 +1701,7 @@ $(() => {
                     dom: 'Bfrtlip',
                     buttons: [
                         {
-                            text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                            text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                             extend: 'excelHtml5',
                             exportOptions: {
                                 columns: ':not(.not-export-col)'
@@ -1916,7 +1918,7 @@ $(() => {
                     dom: 'Bfrtlip',
                     buttons: [
                         {
-                            text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                            text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                             extend: 'excelHtml5',
                             exportOptions: {
                                 columns: ':not(.not-export-col)'
@@ -2137,7 +2139,7 @@ $(() => {
                     dom: 'Bfrtlip',
                     buttons: [
                         {
-                            text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                            text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                             extend: 'excelHtml5',
                             exportOptions: {
                                 columns: ':not(.not-export-col)'
@@ -2356,7 +2358,7 @@ $(() => {
                     dom: 'Bfrtlip',
                     buttons: [
                         {
-                            text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                            text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                             extend: 'excelHtml5',
                             exportOptions: {
                                 columns: ':not(.not-export-col)'
@@ -2578,7 +2580,7 @@ $(() => {
             dom: 'Bfrtlip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     exportOptions: {
                         format: {
@@ -2967,7 +2969,7 @@ $(() => {
             dom: 'Bfrtlip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: ':not(.not-export-col)',
@@ -3038,7 +3040,7 @@ $(() => {
                         <button type="button"\
                                 class="me-3 edit btn btn-primary btn-sm btn-update-group\
                                 "> \
-                                <i class="fa-solid fa-floppy-disk"></i> \
+                                <i class="ti ti-device-floppy"></i> \
                         </button> \
                         <button id="resetGroupEdit"\
                                 class="ms-3 btn btn-danger btn-sm"> \
@@ -3211,7 +3213,7 @@ $(() => {
             dom: 'Bfrtlip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: ':not(.not-export-col)',
@@ -3283,7 +3285,7 @@ $(() => {
                         <button type="button"\
                                 class="me-3 edit btn btn-primary btn-sm btn-update-waste-type\
                                 "> \
-                                <i class="fa-solid fa-floppy-disk"></i> \
+                                <i class="ti ti-device-floppy"></i> \
                         </button> \
                         <button id="resetWasteTypeEdit"\
                                 class="ms-3 btn btn-danger btn-sm"> \
@@ -3453,7 +3455,7 @@ $(() => {
             dom: 'Bfrtlip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: ':not(.not-export-col)',
@@ -3524,7 +3526,7 @@ $(() => {
                         <button type="button"\
                                 class="me-3 edit btn btn-primary btn-sm btn-update-status\
                                 "> \
-                                <i class="fa-solid fa-floppy-disk"></i> \
+                                <i class="ti ti-device-floppy"></i> \
                         </button> \
                         <button id="resetStatusEdit"\
                                 class="ms-3 btn btn-danger btn-sm"> \
@@ -3695,7 +3697,7 @@ $(() => {
         //     dom: 'Bfrtlip',
         //     buttons: [
         //         {
-        //             text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+        //             text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
         //             extend: 'excelHtml5',
         //             exportOptions: {
         //                 columns: ':not(.not-export-col)',
@@ -3767,7 +3769,7 @@ $(() => {
         //                     <button type="button"\
         //                             class="me-3 edit btn btn-primary btn-sm btn-update-package-type\
         //                             "> \
-        //                             <i class="fa-solid fa-floppy-disk"></i> \
+        //                             <i class="ti ti-device-floppy"></i> \
         //                     </button> \
         //                     <button id="resetpackageTypeEdit"\
         //                             class="ms-3 btn btn-danger btn-sm"> \
@@ -3958,7 +3960,7 @@ $(() => {
             // dom: 'Bfrtlip',
             // buttons: [
             //     {
-            //         text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+            //         text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
             //         extend: 'excelHtml5',
             //         title: 'GUÍAS DE INTERNAMIENTO APROBADAS_' + moment().format("YY-MM-DD_hh-mm-ss"),
             //         filename: 'guías-de-internamiento-aprobadas' + moment().format("YY-MM-DD_hh-mm-ss"),
@@ -4005,7 +4007,7 @@ $(() => {
             // dom: 'Bfrtlip',
             // buttons: [
             //     {
-            //         text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+            //         text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
             //         extend: 'excelHtml5',
             //         title: 'GUÍAS DE INTERNAMIENTO PENDIENTES_' + moment().format("YY-MM-DD_hh-mm-ss"),
             //         filename: 'guías-de-internamiento-pendientes' + moment().format("YY-MM-DD_hh-mm-ss"),
@@ -4092,7 +4094,7 @@ $(() => {
             // dom: 'Bfrtlip',
             // buttons: [
             //     {
-            //         text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+            //         text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
             //         extend: 'excelHtml5',
             //         title: 'GUÍAS DE INTERNAMIENTO RECHAZADAS_' + moment().format("YY-MM-DD_hh-mm-ss"),
             //         filename: 'guías-de-internamiento-rechazadas' + moment().format("YY-MM-DD_hh-mm-ss"),
@@ -4427,7 +4429,7 @@ $(() => {
             ],
             // buttons: [
             //     {
-            //         text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+            //         text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
             //         extend: 'excelHtml5',
             //         title:    function () {
             //             var from_date = $('#daterange-btn-wastes-admin').data('daterangepicker').startDate.format('YYYY-MM-DD');
@@ -5097,7 +5099,7 @@ $(() => {
                                                         </td> \
                                                         <td> \
                                                             <button class="delete-row-wasteype-guide btn btn-danger">\
-                                                                <i class="fa-solid fa-trash-can"></i>\
+                                                                <i class="ti ti-trash"></i>\
                                                             </button>\
                                                         </td> \
                                                     </tr>');
@@ -5276,7 +5278,7 @@ $(() => {
             dom: 'Bfrtip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     title: function () {
                         var from_date = $('#daterange-btn-wastes-applicant').data('daterangepicker').startDate.format('YYYY-MM-DD');
@@ -5545,7 +5547,7 @@ $(() => {
             dom: 'Bfrtip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     title: function () {
                         var from_date = $('#daterange-btn-wastes-approver').data('daterangepicker').startDate.format('YYYY-MM-DD');
@@ -5833,7 +5835,7 @@ $(() => {
             dom: 'Bfrtip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     title: function () {
                         var from_date = $('#daterange-btn-wastes-reciever').data('daterangepicker').startDate.format('YYYY-MM-DD');
@@ -6129,7 +6131,7 @@ $(() => {
             // dom: 'Bfrtip',
             // buttons: [
             //     {
-            //         text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+            //         text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
             //         extend: 'excelHtml5',
             //         title: function () {
             //             var from_date = $('#daterange-btn-wastes-verificator').data('daterangepicker').startDate.format('YYYY-MM-DD');
@@ -6521,7 +6523,7 @@ $(() => {
             // dom: 'Bfrtlip',
             // buttons: [
             //     {
-            //         text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+            //         text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
             //         extend: 'excelHtml5',
             //         exportOptions: {
             //             columns: ':not(.not-export-col)'
@@ -6861,7 +6863,7 @@ $(() => {
                 // dom: 'Bfrtlip',
                 // buttons: [
                 //     {
-                //         text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                //         text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                 //         extend: 'excelHtml5',
                 //         exportOptions: {
                 //             columns: ':not(.not-export-col)'
@@ -6970,7 +6972,7 @@ $(() => {
                 // dom: 'Bfrtlip',
                 // buttons: [
                 //     {
-                //         text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                //         text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                 //         extend: 'excelHtml5',
                 //         exportOptions: {
                 //             columns: ':not(.not-export-col)'
@@ -7058,7 +7060,7 @@ $(() => {
         // packingGuideManagerTable.on('draw.dt', function () {
         //     var btn_container = $('#btn-update-departure-container')
         //     btn_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-        //                             <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Realizar Manejo Interno </span>\
+        //                             <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Realizar Manejo Interno </span>\
         //                         </div>');
 
         //     $('input[name="packingGuides-selected[]"]:checked').each(function () {
@@ -7126,12 +7128,12 @@ $(() => {
 
         //     // if(status){
         //     //     btn_container.html('<button id="btn-register-pg-modal" class="btn btn-primary"> \
-        //     //                             <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Realizar Carga </span> \
+        //     //                             <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Realizar Carga </span> \
         //     //                             <i class="fa-solid fa-spinner fa-spin loadSpinner"></i> \
         //     //                         </button>');
         //     // }else{
         //     //     btn_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-        //     //                             <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Realizar Carga </span>\
+        //     //                             <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Realizar Carga </span>\
         //     //                         </div>');
         //     // }
         // })
@@ -7503,12 +7505,12 @@ $(() => {
 
         //     if (status) {
         //         btn_container.html('<button id="btn-update-departure-modal" class="btn btn-primary"> \
-        //                                 <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Realizar Manejo Interno </span> \
+        //                                 <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Realizar Manejo Interno </span> \
         //                                 <i class="fa-solid fa-spinner fa-spin loadSpinner"></i> \
         //                             </button>');
         //     } else {
         //         btn_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-        //                                 <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Realizar Manejo Interno </span>\
+        //                                 <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Realizar Manejo Interno </span>\
         //                             </div>');
         //     }
         // })
@@ -7576,7 +7578,7 @@ $(() => {
                             </div>\
                             <div class="form-group col-lg-1 col-2">\
                                 <span class="form-control btn btn-danger btn-remove-partition">\
-                                    <i class="fa-solid fa-trash-can"></i>\
+                                    <i class="ti ti-trash"></i>\
                                 </span>\
                             </div>\
                         </div>'
@@ -8191,23 +8193,23 @@ $(() => {
 
             if (status_arrival) {
                 btn_container.html('<button id="btn-register-arrival-modal" class="btn btn-primary"> \
-                                        <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Dar llegada </span> \
+                                        <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Dar llegada </span> \
                                         <i class="fa-solid fa-spinner fa-spin loadSpinner"></i> \
                                     </button>');
             } else {
                 btn_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-                                        <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Dar llegada </span>\
+                                        <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Dar llegada </span>\
                                     </div>');
             }
 
             if (status_departure) {
                 btn_departure_container.html('<button id="btn-register-departure-modal" class="btn btn-primary"> \
-                                                <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Dar salida </span> \
+                                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Dar salida </span> \
                                                 <i class="fa-solid fa-spinner fa-spin loadSpinner"></i> \
                                             </button>')
             } else {
                 btn_departure_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-                                                <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Dar salida </span>\
+                                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Dar salida </span>\
                                             </div>')
             }
         })
@@ -8247,7 +8249,7 @@ $(() => {
             dom: 'Bfrtlip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: ':not(.not-export-col)'
@@ -8293,10 +8295,10 @@ $(() => {
             var btn_container = $('#btn-register-arrival-container')
             var btn_departure_container = $('#btn-register-departure-container');
             btn_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-                                        <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Dar llegada </span>\
+                                        <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Dar llegada </span>\
                                 </div>');
             btn_departure_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-                                            <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Dar salida </span>\
+                                            <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Dar salida </span>\
                                         </div>')
 
             $('input[name="departures-selected[]"]:checked').each(function () {
@@ -8496,7 +8498,7 @@ $(() => {
                             });
 
                             btn_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-                                                <i class="fa-solid fa-square-plus"></i> &nbsp; Dar llegada \
+                                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; Dar llegada \
                                             </div>');
 
                             departuresManagerTable.ajax.reload(null, false)
@@ -8642,7 +8644,7 @@ $(() => {
                             });
 
                             btn_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-                                                <i class="fa-solid fa-square-plus"></i> &nbsp; Dar salida \
+                                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; Dar salida \
                                             </div>');
 
                             departuresManagerTable.ajax.reload(null, false)
@@ -8776,12 +8778,12 @@ $(() => {
 
             if (status_disposition) {
                 btn_container.html('<button id="btn-register-disposition-modal" class="btn btn-primary"> \
-                                        <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Disposición </span> \
+                                        <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Disposición </span> \
                                         <i class="fa-solid fa-spinner fa-spin loadSpinner"></i> \
                                     </button>');
             } else {
                 btn_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-                                        <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Disposición </span>\
+                                        <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Disposición </span>\
                                     </div>');
             }
         })
@@ -8857,7 +8859,7 @@ $(() => {
             dom: 'Bfrtlip',
             buttons: [
                 {
-                    text: '<i class="fa-solid fa-download"></i> &nbsp; Descargar Excel',
+                    text: '<i class="ti ti-download"></i> &nbsp; Descargar Excel',
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: ':not(.not-export-col)'
@@ -8903,7 +8905,7 @@ $(() => {
             var btn_container = $('#btn-register-disposition-container')
 
             btn_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-                                        <i class="fa-solid fa-square-plus"></i> &nbsp; <span class="me-1"> Disposición </span>\
+                                        <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; <span class="me-1"> Disposición </span>\
                                 </div>');
 
             $('input[name="dispositions-selected[]"]:checked').each(function () {
@@ -9037,7 +9039,7 @@ $(() => {
                             });
 
                             btn_container.html('<div class="btn btn-secondary" style="pointer-events: none;"> \
-                                                <i class="fa-solid fa-square-plus"></i> &nbsp; Disposición \
+                                                <i class="ti ti-square-rounded-plus-filled"></i> &nbsp; Disposición \
                                             </div>');
 
                             dispositionManagerTable.ajax.reload(null, false)

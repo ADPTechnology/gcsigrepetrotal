@@ -61,7 +61,7 @@
                                             type="text" placeholder="Nombre de gestión interna" required>
                                         <div class="input-group-prepend">
                                             <button type="submit" class="btn btn-primary btn-save">
-                                                <i class="fa-solid fa-floppy-disk"></i>
+                                                <i class="ti ti-device-floppy"></i>
                                                 <i class="fa-solid fa-spinner fa-spin loadSpinner"></i>
                                             </button>
                                         </div>
@@ -71,7 +71,8 @@
                         </form>
 
 
-                        <table id="inter_management-table" class="table table-hover" data-url="{{ route('managementTables.index') }}">
+                        <table id="inter_management-table" class="table table-hover"
+                            data-url="{{ route('managementTables.index') }}">
                             <thead>
                                 <tr>
                                     <th>N°</th>
@@ -95,7 +96,7 @@
                                             type="text" placeholder="Nombre de gestión externa" required>
                                         <div class="input-group-prepend">
                                             <button type="submit" class="btn btn-primary btn-save">
-                                                <i class="fa-solid fa-floppy-disk"></i>
+                                                <i class="ti ti-device-floppy"></i>
                                                 <i class="fa-solid fa-spinner fa-spin loadSpinner"></i>
                                             </button>
                                         </div>
@@ -104,7 +105,8 @@
                             </div>
                         </form>
 
-                        <table id="ext_management_table" class="table table-hover" data-url="{{ route('managementTables.index') }}">
+                        <table id="ext_management_table" class="table table-hover"
+                            data-url="{{ route('managementTables.index') }}">
                             <thead>
                                 <tr>
                                     <th>N°</th>
@@ -126,7 +128,7 @@
                                             type="text" placeholder="Nombre de disposición final" required>
                                         <div class="input-group-prepend">
                                             <button type="submit" class="btn btn-primary btn-save">
-                                                <i class="fa-solid fa-floppy-disk"></i>
+                                                <i class="ti ti-device-floppy"></i>
                                                 <i class="fa-solid fa-spinner fa-spin loadSpinner"></i>
                                             </button>
                                         </div>
@@ -135,7 +137,8 @@
                             </div>
                         </form>
 
-                        <table id="final_disp_table" class="table table-hover" data-url="{{ route('managementTables.index') }}">
+                        <table id="final_disp_table" class="table table-hover"
+                            data-url="{{ route('managementTables.index') }}">
                             <thead>
                                 <tr>
                                     <th>N°</th>
@@ -146,7 +149,8 @@
                         </table>
                     </div>
 
-                    <div class="tab-pane fade" id="disposition_place" role="tabpanel" aria-labelledby="disposition_place">
+                    <div class="tab-pane fade" id="disposition_place" role="tabpanel"
+                        aria-labelledby="disposition_place">
                         <form action="{{ route('dispPlace.store') }}" id="registerDispPlaceExtForm" method="POST">
                             @csrf
                             <div class="form-row">
@@ -157,7 +161,7 @@
                                             type="text" placeholder="Nombre de lugar de disposición" required>
                                         <div class="input-group-prepend">
                                             <button type="submit" class="btn btn-primary btn-save">
-                                                <i class="fa-solid fa-floppy-disk"></i>
+                                                <i class="ti ti-device-floppy"></i>
                                                 <i class="fa-solid fa-spinner fa-spin loadSpinner"></i>
                                             </button>
                                         </div>
@@ -166,7 +170,8 @@
                             </div>
                         </form>
 
-                        <table id="disp_place_table" class="table table-hover" data-url="{{ route('managementTables.index') }}">
+                        <table id="disp_place_table" class="table table-hover"
+                            data-url="{{ route('managementTables.index') }}">
                             <thead>
                                 <tr>
                                     <th>N°</th>

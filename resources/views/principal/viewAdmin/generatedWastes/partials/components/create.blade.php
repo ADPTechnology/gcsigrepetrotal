@@ -7,12 +7,13 @@
                 GUÍA DE INTERNAMIENTO Nro:
             </span>
             <div class="d-inline-block">
-                <input class="code-txt text-center" name="guide_code" type="text"  value="{{ $guide_code }}">
+                <input class="code-txt text-center" name="guide_code" type="text" value="{{ $guide_code }}">
             </div>
         </div>
 
         <div>
-            <div class="datepicker-range-container input-daterange input-group w-auto justify-content-end" id="datepicker_store_guide">
+            <div class="datepicker-range-container input-daterange input-group w-auto justify-content-end"
+                id="datepicker_store_guide">
                 <span class="datepicker-label">
                     Fecha:
                 </span>
@@ -102,7 +103,7 @@
             <div class="form-group ms-3 save-btn-classWaste-guide-container">
                 <button class="btn btn-primary" id="btn-save-classWaste-guide"
                     data-url="{{ route('guides.getDataWarehouse') }}">
-                    <i class="fa-solid fa-square-plus"></i> &nbsp;
+                    <i class="ti ti-square-rounded-plus-filled"></i> &nbsp;
                     Agregar
                 </button>
             </div>

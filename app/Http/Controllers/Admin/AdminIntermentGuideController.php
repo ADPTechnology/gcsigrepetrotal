@@ -91,7 +91,7 @@ class AdminIntermentGuideController extends Controller
 
                     $btn .= '<a href="'. route('guidesAdmin.deleteGuide', $guide) .'"
                             data-original-title="delete" class="me-3 delete-guide-btn btn btn-danger btn-sm">
-                                <i class="fa-solid fa-trash-can"></i>
+                                <i class="ti ti-trash"></i>
                             </a>';
 
                     return $btn;
@@ -253,7 +253,7 @@ class AdminIntermentGuideController extends Controller
 
                                 $btn .= '<a href="'. route('guidesAdmin.deleteGuide', $guide) .'"
                                         data-original-title="delete" class="me-3 delete-guide-btn btn btn-danger btn-sm">
-                                            <i class="fa-solid fa-trash-can"></i>
+                                            <i class="ti ti-trash"></i>
                                         </a>';
 
                                 return $btn;

@@ -17,7 +17,7 @@
 
             <li class="{{ setActive('home.index') }}">
                 <a href="{{ route('home.index') }}" class="nav-link">
-                    <i class="fa-solid fa-house"></i>
+                    <i class="ti ti-home"></i>
                     <span>Inicio</span>
                 </a>
             </li>
@@ -25,7 +25,7 @@
             {{-- @if (in_array(Auth::user()->role->name, ['SOLICITANTE']))
                 <li class="{{ setActive('guides.*') }}">
                     <a href="{{ route('guides.create') }}" class="nav-link">
-                        <i class="fa-solid fa-building-circle-check"></i>
+                        <i class="ti ti-building-circle-check"></i>
                         <span>Crear Guía</span>
                     </a>
                 </li>
@@ -53,7 +53,7 @@
 
                 <li class="{{ setActive('generatedWastesApplicant.*') }}">
                     <a href="{{ route('generatedWastesApplicant.index') }}" class="nav-link">
-                        <i class="fa-solid fa-dumpster"></i>
+                        <i class="ti ti-building-warehouse"></i>
                         <span>Residuos Generados</span>
                     </a>
                 </li>
@@ -83,7 +83,7 @@
 
                 <li class="{{ setActive('generatedWastesApproving.*') }}">
                     <a href="{{ route('generatedWastesApproving.index') }}" class="nav-link">
-                        <i class="fa-solid fa-dumpster"></i>
+                        <i class="ti ti-building-warehouse"></i>
                         <span>Residuos Generados</span>
                     </a>
                 </li>
@@ -113,7 +113,7 @@
 
                 <li class="{{ setActive('generatedWastesReciever.*') }}">
                     <a href="{{ route('generatedWastesReciever.index') }}" class="nav-link">
-                        <i class="fa-solid fa-dumpster"></i>
+                        <i class="ti ti-building-warehouse"></i>
                         <span>Residuos Generados</span>
                     </a>
                 </li>
@@ -143,7 +143,7 @@
 
                 <li class="{{ setActive('generatedWastesVerificator.*') }}">
                     <a href="{{ route('generatedWastesVerificator.index') }}" class="nav-link">
-                        <i class="fa-solid fa-dumpster"></i>
+                        <i class="ti ti-building-warehouse"></i>
                         <span>Residuos Generados</span>
                     </a>
                 </li>
@@ -166,13 +166,13 @@
                     <ul class="dropdown-menu">
                         <li class="{{ setActive('generatedWastesAdmin.index') }}">
                             <a href="{{ route('generatedWastesAdmin.index') }}" class="nav-link">
-                                <i class="fa-solid fa-circle fa-2xs"></i>
+                                <i class="ti ti-point-filled"></i>
                                 Admin Internamiento
                             </a>
                         </li>
                         <li class="{{ setActive('dashboard.interIndex') }}">
                             <a href="{{ route('dashboard.interIndex') }}" class="nav-link">
-                                <i class="fa-solid fa-circle fa-2xs"></i>
+                                <i class="ti ti-point-filled"></i>
                                 Reporte internamiento
                             </a>
                         </li>
@@ -187,13 +187,13 @@
                     <ul class="dropdown-menu">
                         <li class="{{ setActive('stock.index') }}">
                             <a href="{{ route('stock.index') }}" class="nav-link">
-                                <i class="fa-solid fa-circle fa-2xs"></i>
+                                <i class="ti ti-point-filled"></i>
                                 Stock & G.Interna
                             </a>
                         </li>
                         <li class="{{ setActive('dashboard.interManagementIndex') }}">
                             <a href="{{ route('dashboard.interManagementIndex') }}" class="nav-link">
-                                <i class="fa-solid fa-circle fa-2xs"></i>
+                                <i class="ti ti-point-filled"></i>
                                 Reporte G.Interna
                             </a>
                         </li>
@@ -207,13 +207,13 @@
                     <ul class="dropdown-menu">
                         <li class="{{ setActive('stock.external') }}">
                             <a href="{{ route('stock.external') }}" class="nav-link">
-                                <i class="fa-solid fa-circle fa-2xs"></i>
+                                <i class="ti ti-point-filled"></i>
                                 Stock & G.Externa
                             </a>
                         </li>
                         <li class="{{ setActive('dashboard.extManagementIndex') }}">
                             <a href="{{ route('dashboard.extManagementIndex') }}" class="nav-link">
-                                <i class="fa-solid fa-circle fa-2xs"></i>
+                                <i class="ti ti-point-filled"></i>
                                 Reporte G.Externa
                             </a>
                         </li>
@@ -243,7 +243,7 @@
 
                 <li class="{{ setActive('generatedWastesAdmin.*') }}">
                     <a href="{{ route('generatedWastesAdmin.index') }}" class="nav-link">
-                        <i class="fa-solid fa-dumpster"></i>
+                        <i class="ti ti-building-warehouse"></i>
                         <span>Residuos Generados</span>
                     </a>
                 </li> --}}
@@ -252,7 +252,7 @@
             {{-- @if (Auth::user()->role->name == 'GESTOR')
                 <li class="{{ setActive('stock.*') }}">
                     <a href="{{ route('stock.index') }}" class="nav-link">
-                        <i class="fa-solid fa-layer-group"></i>
+                        <i class="ti ti-stack-2"></i>
                         <span>Stock</span>
                     </a>
                 </li>
@@ -278,7 +278,7 @@
             <ul class="sidebar-menu txt-divider">
                 <li class="">
                     <a class="nav-link" href="">
-                        <i class="fa-solid fa-user-shield"></i>
+                        <i class="ti ti-shield-filled"></i>
                         <span>ADMINISTRADOR</span>
                     </a>
                 </li>
@@ -288,28 +288,28 @@
 
                 <li class="{{ setActive('warehouses.*') }}">
                     <a href="{{ route('warehouses.index') }}" class="nav-link">
-                        <i class="fa-solid fa-warehouse"></i>
+                        <i class="ti ti-building-warehouse"></i>
                         <span>Puntos verdes</span>
                     </a>
                 </li>
 
                 <li class="{{ setActive('wastes.*') }}">
                     <a href="{{ route('wastes.index') }}" class="nav-link">
-                        <i class="fa-solid fa-recycle"></i>
+                        <i class="ti ti-recycle"></i>
                         <span>Residuos</span>
                     </a>
                 </li>
 
                 <li class="{{ setActive('users.*') }}">
                     <a href="{{ route('users.index') }}" class="nav-link">
-                        <i class="fa-solid fa-users"></i>
+                        <i class="ti ti-user"></i>
                         <span>Usuarios</span>
                     </a>
                 </li>
 
                 <li class="{{ setActive('managementTables.*') }}">
                     <a href="{{ route('managementTables.index') }}" class="nav-link">
-                        <i class="fa-solid fa-table"></i>
+                        <i class="ti ti-table"></i>
                         <span>Mnto. Tablas</span>
                     </a>
                 </li>

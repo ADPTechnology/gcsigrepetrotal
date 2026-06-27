@@ -16,7 +16,7 @@
 
                 <div class="mb-4">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#RegisterUserModal">
-                        <i class="fa-solid fa-user-plus"></i> &nbsp; Registrar
+                        <i class="ti ti-user-plus"></i> &nbsp; Registrar
                     </button>
                 </div>
 
@@ -50,7 +50,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="RegisterUserModalLabel">
                         <div class="section-title mt-0">
-                            <i class="fa-solid fa-user-plus"></i> &nbsp;
+                            <i class="ti ti-user-plus"></i> &nbsp;
                             Registrar Usuario
                         </div>
                     </h5>
@@ -155,7 +155,8 @@
                                     class="form-control select2" id="registerProfileSelect" required>
                                     <option></option>
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}"> {{ config('parameters.roles_names')[$role->name] }} </option>
+                                        <option value="{{ $role->id }}">
+                                            {{ config('parameters.roles_names')[$role->name] }} </option>
                                     @endforeach
                                 </select>
 

@@ -46,11 +46,11 @@ class WarehouseController extends Controller
                                                 $warehouse->id.'" data-url="'.route('warehouses.update', $warehouse).'"
                                                 data-send="'.route('warehouses.edit', $warehouse).'"
                                                 data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                                                editWarehouse"><i class="fa-solid fa-pen-to-square"></i></button>';
+                                                editWarehouse"><i class="ti ti-edit"></i></button>';
                                         $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.
                                                 $warehouse->id.'" data-original-title="delete"
                                                 data-url="'.route('warehouses.delete', $warehouse).'" class="ms-3 edit btn btn-danger btn-sm
-                                                deleteWarehouse"><i class="fa-solid fa-trash-can"></i></a>';
+                                                deleteWarehouse"><i class="ti ti-trash"></i></a>';
                                         return $btn;
                                     })
                                     ->rawColumns(['action'])
@@ -64,11 +64,11 @@ class WarehouseController extends Controller
                             $lot->id.'" data-url="'.route('lots.update', $lot).'"
                             data-send="'.route('lots.edit', $lot).'"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editLot"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editLot"><i class="ti ti-edit"></i></button>';
                     $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.
                             $lot->id.'" data-original-title="delete"
                             data-url="'.route('lots.delete', $lot).'" class="ms-3 edit btn btn-danger btn-sm
-                            deleteLot"><i class="fa-solid fa-trash-can"></i></a>';
+                            deleteLot"><i class="ti ti-trash"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -83,11 +83,11 @@ class WarehouseController extends Controller
                             $stage->id.'" data-url="'.route('stages.update', $stage).'"
                             data-send="'.route('stages.edit', $stage).'"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editStage"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editStage"><i class="ti ti-edit"></i></button>';
                     $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.
                             $stage->id.'" data-original-title="delete"
                             data-url="'.route('stages.delete', $stage).'" class="ms-3 edit btn btn-danger btn-sm
-                            deleteStage"><i class="fa-solid fa-trash-can"></i></a>';
+                            deleteStage"><i class="ti ti-trash"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -102,11 +102,11 @@ class WarehouseController extends Controller
                             $location->id.'" data-url="'.route('locations.update', $location).'"
                             data-send="'.route('locations.edit', $location).'"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editLocation"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editLocation"><i class="ti ti-edit"></i></button>';
                     $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.
                             $location->id.'" data-original-title="delete"
                             data-url="'.route('locations.delete', $location).'" class="ms-3 edit btn btn-danger btn-sm
-                            deleteLocation"><i class="fa-solid fa-trash-can"></i></a>';
+                            deleteLocation"><i class="ti ti-trash"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -121,11 +121,11 @@ class WarehouseController extends Controller
                             $project->id.'" data-url="'.route('projects.update', $project).'"
                             data-send="'.route('projects.edit', $project).'"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editProject"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editProject"><i class="ti ti-edit"></i></button>';
                     $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.
                             $project->id.'" data-original-title="delete"
                             data-url="'.route('projects.delete', $project).'" class="ms-3 edit btn btn-danger btn-sm
-                            deleteProject"><i class="fa-solid fa-trash-can"></i></a>';
+                            deleteProject"><i class="ti ti-trash"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -140,11 +140,11 @@ class WarehouseController extends Controller
                             $company->id.'" data-url="'.route('companies.update', $company).'"
                             data-send="'.route('companies.edit', $company).'"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editCompany"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editCompany"><i class="ti ti-edit"></i></button>';
                     $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.
                             $company->id.'" data-original-title="delete"
                             data-url="'.route('companies.delete', $company).'" class="ms-3 edit btn btn-danger btn-sm
-                            deleteCompany"><i class="fa-solid fa-trash-can"></i></a>';
+                            deleteCompany"><i class="ti ti-trash"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -159,11 +159,11 @@ class WarehouseController extends Controller
                             $front->id.'" data-url="'.route('fronts.update', $front).'"
                             data-send="'.route('fronts.edit', $front).'"
                             data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                            editFront"><i class="fa-solid fa-pen-to-square"></i></button>';
+                            editFront"><i class="ti ti-edit"></i></button>';
                     $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.
                             $front->id.'" data-original-title="delete"
                             data-url="'.route('fronts.delete', $front).'" class="ms-3 edit btn btn-danger btn-sm
-                            deleteFront"><i class="fa-solid fa-trash-can"></i></a>';
+                            deleteFront"><i class="ti ti-trash"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])

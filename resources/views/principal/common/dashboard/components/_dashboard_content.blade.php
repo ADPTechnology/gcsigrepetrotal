@@ -84,7 +84,7 @@
                             <input type="checkbox" name="lots_check_options" class="selectgroup-input check_options"
                                 checked>
                             <span class="selectgroup-button">
-                                <i class="fa-solid fa-list-check"></i>
+                                <i class="ti ti-list-check"></i>
                             </span>
                         </label>
                     </div>
@@ -116,7 +116,7 @@
                                     <label class="selectgroup-item mb-1">
                                         <input type="checkbox" name="lots_check_options" class="selectgroup-input check_options" checked>
                                         <span class="selectgroup-button">
-                                            <i class="fa-solid fa-list-check"></i>
+                                            <i class="ti ti-list-check"></i>
                                         </span>
                                     </label>
                                 </div>
@@ -147,7 +147,7 @@
                             <input type="checkbox" name="lots_check_options" class="selectgroup-input check_options"
                                 checked>
                             <span class="selectgroup-button">
-                                <i class="fa-solid fa-list-check"></i>
+                                <i class="ti ti-list-check"></i>
                             </span>
                         </label>
                     </div>
@@ -178,7 +178,7 @@
                             <input type="checkbox" name="lots_check_options" class="selectgroup-input check_options"
                                 checked>
                             <span class="selectgroup-button">
-                                <i class="fa-solid fa-list-check"></i>
+                                <i class="ti ti-list-check"></i>
                             </span>
                         </label>
                     </div>
@@ -209,7 +209,7 @@
                             <input type="checkbox" name="lots_check_options" class="selectgroup-input check_options"
                                 checked>
                             <span class="selectgroup-button">
-                                <i class="fa-solid fa-list-check"></i>
+                                <i class="ti ti-list-check"></i>
                             </span>
                         </label>
                     </div>
@@ -239,7 +239,7 @@
                                     <label class="selectgroup-item mb-1">
                                         <input type="checkbox" name="lots_check_options" class="selectgroup-input check_options" checked>
                                         <span class="selectgroup-button">
-                                            <i class="fa-solid fa-list-check"></i>
+                                            <i class="ti ti-list-check"></i>
                                         </span>
                                     </label>
                                 </div>
@@ -269,7 +269,7 @@
                             <input type="checkbox" name="lots_check_options" class="selectgroup-input check_options"
                                 checked>
                             <span class="selectgroup-button">
-                                <i class="fa-solid fa-list-check"></i>
+                                <i class="ti ti-list-check"></i>
                             </span>
                         </label>
                     </div>
@@ -300,7 +300,7 @@
                             <input type="checkbox" name="lots_check_options" class="selectgroup-input check_options"
                                 checked>
                             <span class="selectgroup-button">
-                                <i class="fa-solid fa-list-check"></i>
+                                <i class="ti ti-list-check"></i>
                             </span>
                         </label>
                     </div>
@@ -331,7 +331,7 @@
                             <input type="checkbox" name="lots_check_options" class="selectgroup-input check_options"
                                 checked>
                             <span class="selectgroup-button">
-                                <i class="fa-solid fa-list-check"></i>
+                                <i class="ti ti-list-check"></i>
                             </span>
                         </label>
                     </div>

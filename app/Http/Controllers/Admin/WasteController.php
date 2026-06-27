@@ -48,12 +48,12 @@ class WasteController extends Controller
                                 $class->id.'" data-url="'.route('wastes.update', $class).'"
                                 data-send="'.route('wastes.edit', $class).'"
                                 data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                                editClass"><i class="fa-solid fa-pen-to-square"></i></button>';
+                                editClass"><i class="ti ti-edit"></i></button>';
 
                         $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.
                                 $class->id.'" data-original-title="delete"
                                 data-url="'.route('wastes.delete', $class).'" class="ms-3 edit btn btn-danger btn-sm
-                                deleteClass"><i class="fa-solid fa-trash-can"></i></a>';
+                                deleteClass"><i class="ti ti-trash"></i></a>';
 
                         return $btn;
                     })
@@ -70,12 +70,12 @@ class WasteController extends Controller
                         $btn = '<button data-id="'.
                                 $type->id.'" data-url="'.route('wastesType.update', $type).'"
                                 data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                                editType"><i class="fa-solid fa-pen-to-square"></i></button>';
+                                editType"><i class="ti ti-edit"></i></button>';
 
                         $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.
                                 $type->id.'" data-original-title="delete"
                                 data-url="'.route('wastesType.delete', $type).'" class="ms-3 edit btn btn-danger btn-sm
-                                deleteType"><i class="fa-solid fa-trash-can"></i></a>';
+                                deleteType"><i class="ti ti-trash"></i></a>';
 
                         return $btn;
                     })

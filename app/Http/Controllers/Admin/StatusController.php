@@ -20,12 +20,12 @@ class StatusController extends Controller
                     $btn = '<button data-id="' .
                         $status->id . '" data-url="' . route('status.update', $status) . '"
                                 data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                                editStatus"><i class="fa-solid fa-pen-to-square"></i></button>';
+                                editStatus"><i class="ti ti-edit"></i></button>';
 
                     $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' .
                         $status->id . '" data-original-title="delete"
                                 data-url="' . route('status.delete', $status) . '" class="ms-3 edit btn btn-danger btn-sm
-                                deleteStatus"><i class="fa-solid fa-trash-can"></i></a>';
+                                deleteStatus"><i class="ti ti-trash"></i></a>';
 
                     return $btn;
                 })

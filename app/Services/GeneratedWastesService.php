@@ -34,13 +34,13 @@ class GeneratedWastesService
                     data-url="' . route('admin.guidewaste.update', $waste) . '"
                     data-send="' . route('admin.guidewaste.edit', $waste) . '"
                     data-original-title="edit" class="me-3 edit btn btn-warning btn-sm
-                    editWaste"><i class="fa-solid fa-pen-to-square"></i></button>';
+                    editWaste"><i class="ti ti-edit"></i></button>';
 
                 $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' .
                     $waste->id . '" data-original-title="delete"
                     data-url="' . route('admin.guidewaste.delete', $waste) . '"
                     class="ms-3 edit btn btn-danger btn-sm
-                    deleteWaste"><i class="fa-solid fa-trash-can"></i></a>';
+                    deleteWaste"><i class="ti ti-trash"></i></a>';
 
                 return $btn;
             })

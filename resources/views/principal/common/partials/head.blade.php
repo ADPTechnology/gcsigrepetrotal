@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
 
 	@include('scripts.font-awesome')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.35.0/tabler-icons.min.css" />
 
 	<!-- CSS Libraries -->
 	<link rel="stylesheet" href="{{asset('assets/principal/modules/jqvmap/dist/jqvmap.min.css')}}">
